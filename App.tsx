@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import GestureRecognizer from 'react-native-swipe-gestures'
 import moment from 'moment'
-import { fetchData } from './FetchData'
-import WeatherData from './WeatherData'
+import { fetchData } from './src/FetchData'
+import WeatherData from './src/WeatherData'
 
 export default function App() {
 
