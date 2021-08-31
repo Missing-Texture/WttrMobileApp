@@ -16,6 +16,7 @@ export default function App() {
 		if (!isLoading) {
 			weekDaysRef.current.forEach((elem: any) => {
 				elem.setNativeProps({style: {fontWeight: 'normal'}})
+				elem.setNativeProps({style: {opacity: 0.4}})
 			})
 			weekDaysRef.current[pageIndex].setNativeProps({style: {fontWeight: 'bold'}})
 		}
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
 		marginTop: 40,
 		textAlign: 'center',
 		color: '#e8e6ff',
-		fontSize: 25,
+		fontSize: 35,
 		paddingTop: 10,
 	}
 });

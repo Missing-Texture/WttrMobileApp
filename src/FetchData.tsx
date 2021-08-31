@@ -29,7 +29,8 @@ export function fetchData(url: string) {
 							date: json.weather[2].date,
 							temps: json.weather[2].hourly.map((datapoint: any) => { return Number(datapoint.tempC) }),
 							rain: json.weather[2].hourly.map((datapoint: any) => { return Number(datapoint.chanceofrain) }),
-						}]
+						}],
+					'currentTemp': json.current_condition[0].temp_C,
 				})
 			})
 			.catch(error => {

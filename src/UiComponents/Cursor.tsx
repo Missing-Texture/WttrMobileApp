@@ -24,7 +24,7 @@ export default class Cursor extends Component {
 
     render() {
         return(
-            <Svg style={{ width: '90%', height: '100%' }}>
+            <Svg style={{ width: '80%', height: '100%' }}>
                 <Line
                     key={0}
                     y1={'0%'}

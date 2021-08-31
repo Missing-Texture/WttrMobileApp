@@ -11,10 +11,14 @@ export default function WeatherData({ data }: { data: IDayWeatherInfo }) {
     const styles = StyleSheet.create({
         dayTimeAxis: {
             color: 'white', 
-            paddingLeft: 33, 
-            paddingRight: 33,
+            paddingLeft: 28, 
+            paddingRight: 28,
             fontSize: 15
         },
+        tempsAxis: {
+            color: 'white', 
+            fontSize: 15
+        }
     })
 
     return(
@@ -22,7 +26,7 @@ export default function WeatherData({ data }: { data: IDayWeatherInfo }) {
             <View style={{ marginTop: 20, position: 'relative', width: 350, height: 250 }}>
                 <View style={{ position: 'absolute', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}>
                     <LineChart
-                        style={{ width: '90%', height: '70%' }}
+                        style={{ width: '80%', height: '70%' }}
                         data={data.temps}
                         curve={shape.curveMonotoneX}
                         svg={{ stroke: 'rgb(81, 200, 85)', strokeWidth: 4 }}
@@ -34,8 +38,13 @@ export default function WeatherData({ data }: { data: IDayWeatherInfo }) {
                     <Grid />
                 </View>
 
-                <View style={{ position: 'absolute', width: '100%', height: '100%', alignItems: 'center', }}>
+                <View style={{ position: 'absolute', width: '100%', height: '100%', alignItems: 'center' }}>
                     <Cursor />
+                </View>
+
+                <View style={{ position: 'absolute', width: '20%', height: '100%', paddingLeft: '3%' }}>
+                    <Text style={[styles.tempsAxis, {paddingTop: 15, paddingBottom: 180}]}>{Math.max.apply(null, data.temps)}</Text>
+                    <Text style={styles.tempsAxis}>{Math.min.apply(null, data.temps)}</Text>
                 </View>
             </View>
 
@@ -51,7 +60,7 @@ export default function WeatherData({ data }: { data: IDayWeatherInfo }) {
             <View style={{ marginTop: 10, position: 'relative', height: 100, width: 350 }}>
                 <View style={{ position: 'absolute', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}>
                     <AreaChart
-                        style={{ width: '90%', height: '70%' }}
+                        style={{ width: '80%', height: '70%' }}
                         data={data.rain}
                         yMax={100}
                         curve={shape.curveMonotoneX}
