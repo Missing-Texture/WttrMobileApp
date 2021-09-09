@@ -31,7 +31,7 @@ export default function App() {
 
 						<View style={{ height: 50, width: 350, marginTop: 20, flexDirection:'row', justifyContent: 'center' }}>
 							{data!.dayInfos.map((item, i) => (
-								<Text style={{ color: 'white', padding: 10, fontSize: 15 }}
+								<Text style={{ color: 'white', paddingLeft: 15, paddingRight: 15, fontSize: 15 }}
 									key={i}
 									ref={elem => weekDaysRef.current[i] = elem}
 								>
