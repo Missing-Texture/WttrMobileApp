@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
-import GestureRecognizer from 'react-native-swipe-gestures'
+import PagerView from 'react-native-pager-view';
 import moment from 'moment'
 import { fetchData } from './src/FetchData'
 import WeatherData from './src/WeatherData'
+import WeatherDataBackground from './src/WeatherDataBackground'
+import { globalStyles } from './src/globalStyles'
 
 export default function App() {
 
@@ -42,13 +44,25 @@ export default function App() {
 							))}
 						</View>
 
-						<GestureRecognizer
-							onSwipeLeft={() => {setPageIndex((pageIndex-1 < 0) ? 2 : pageIndex-1)}}
-							onSwipeRight={() => setPageIndex((pageIndex+1)%3)}
-						>
-							<WeatherData data={data!.dayInfos[pageIndex]}/>
-						</GestureRecognizer>
-						
+						<View style={ [globalStyles.P_overlappingContainer, { width: 350, height: 450, marginTop: 20 }]}>
+							<View style={ globalStyles.C_overlappingContainer }>
+								<WeatherDataBackground data={data!.dayInfos[0]} />
+							</View>
+
+							<View style={ globalStyles.C_overlappingContainer }>
+								<PagerView initialPage={0} style={{ flex: 1 }}>
+									<View key="1">
+										<WeatherData data={data!.dayInfos[0]}/>
+									</View>
+									<View key="2">
+										<WeatherData data={data!.dayInfos[1]}/>
+									</View>
+									<View key="3">
+										<WeatherData data={data!.dayInfos[2]}/>
+									</View>
+								</PagerView>
+							</View>
+						</View>
 					</View>
 				)}
 		</View>
