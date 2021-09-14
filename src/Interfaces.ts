@@ -1,7 +1,8 @@
 export interface IData {
 	city: string
     dayInfos: IDayWeatherInfo[]
-	currentTemp: number
+	currentTemp: string
+	currentWeather: string
 }
 
 export interface IDayWeatherInfo {

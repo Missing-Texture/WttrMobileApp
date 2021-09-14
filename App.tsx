@@ -2,14 +2,19 @@ import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import PagerView from 'react-native-pager-view';
 import moment from 'moment'
+
 import { fetchData } from './src/FetchData'
 import WeatherData from './src/WeatherData'
 import WeatherDataBackground from './src/WeatherDataBackground'
-import { globalStyles } from './src/globalStyles'
+import InfoHeader from './src/InfoHeader'
+import globalStyles from './src/globalStyles'
+
 
 export default function App() {
 
-	const { data, isLoading } = fetchData('http://v2.wttr.in/ingolstadt?format=j1')
+	var specificCity = 'ingolstadt'
+
+	const { data, isLoading } = fetchData('http://wttr.in/'+ specificCity +'?format=j1')
 	const [pageIndex, setPageIndex] = React.useState(0);
 
 	const weekDaysRef: any = useRef([])
@@ -25,11 +30,11 @@ export default function App() {
 	}, [pageIndex])
 
 	return (
-		<View style={styles.container}>
+		<View style={[ styles.container, globalStyles.blackBackground ]}>
 			{/* show infinite loading circle while data is not loaded */
 				isLoading ? <ActivityIndicator /> : (
 					<View>
-						<Text style={styles.header}>{data?.city}</Text>
+						<InfoHeader data={ data!}/>
 
 						<View style={{ height: 50, width: 350, marginTop: 20, flexDirection:'row', justifyContent: 'center' }}>
 							{data!.dayInfos.map((item, i) => (
@@ -72,14 +77,6 @@ export default function App() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#131516',
 		alignItems: 'center',
 	},
-	header: {
-		marginTop: 40,
-		textAlign: 'center',
-		color: '#e8e6ff',
-		fontSize: 35,
-		paddingTop: 10,
-	}
 });

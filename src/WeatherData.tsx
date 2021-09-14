@@ -4,7 +4,7 @@ import { LineChart, AreaChart, XAxis, YAxis } from 'react-native-svg-charts'
 import * as shape from 'd3-shape'
 import { Grid, DayTimeAxis, Cursor } from './UiComponents'
 import { IDayWeatherInfo } from './Interfaces'
-import { globalStyles } from './globalStyles'
+import globalStyles from './globalStyles'
 
 
 export default function WeatherData({ data }: { data: IDayWeatherInfo }) {
