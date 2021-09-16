@@ -7,15 +7,6 @@ import globalStyles from './globalStyles'
 
 export default function WeatherDataBackground({ data }: { data: IDayWeatherInfo }) {
 
-    const styles = StyleSheet.create({
-        dayTimeAxis: {
-            color: 'white', 
-            paddingLeft: 28, 
-            paddingRight: 28,
-            fontSize: 15
-        }
-    })
-
     return(
         <View>
             <View style={[ globalStyles.P_overlappingContainer, { width: '100%', height: '55%' } ]}>
@@ -49,3 +40,12 @@ export default function WeatherDataBackground({ data }: { data: IDayWeatherInfo 
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    dayTimeAxis: {
+        color: 'white', 
+        paddingLeft: 28, 
+        paddingRight: 28,
+        fontSize: 15
+    }
+})

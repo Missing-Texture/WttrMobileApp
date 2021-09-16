@@ -22,7 +22,7 @@ export default function WeatherData({ data }: { data: IData }) {
 const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row', 
-        marginTop: 40, 
+        marginTop: 50, 
         paddingLeft: 10, 
         paddingRight: 10, 
         alignItems: 'center', 
