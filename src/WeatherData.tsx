@@ -7,7 +7,7 @@ import { IDayWeatherInfo } from './Interfaces'
 import globalStyles from './globalStyles'
 
 
-export default function WeatherData({ data }: { data: IDayWeatherInfo }) {
+export default function WeatherData({ data, maxTemp, minTemp }: { data: IDayWeatherInfo, maxTemp: number, minTemp: number }) {
 
     return(
         <View>
@@ -19,12 +19,9 @@ export default function WeatherData({ data }: { data: IDayWeatherInfo }) {
                         curve={shape.curveMonotoneX}
                         svg={{ stroke: 'rgb(81, 200, 85)', strokeWidth: 4 }}
                         contentInset={{ top: 4, bottom: 4 }}
+                        yMax={maxTemp}
+                        yMin={minTemp}
                     ></LineChart>
-                </View>
-
-                <View style={[ globalStyles.C_overlappingContainer, { position: 'absolute', width: '20%', height: '100%', paddingLeft: '3%' } ]}>
-                    <Text style={[styles.tempsAxis, {paddingTop: 15, paddingBottom: 180}]}>{Math.max.apply(null, data.temps)}</Text>
-                    <Text style={styles.tempsAxis}>{Math.min.apply(null, data.temps)}</Text>
                 </View>
             </View>
 
@@ -46,8 +43,5 @@ export default function WeatherData({ data }: { data: IDayWeatherInfo }) {
 }
 
 const styles = StyleSheet.create({
-    tempsAxis: {
-        color: 'white', 
-        fontSize: 15
-    }
+    
 })

@@ -5,7 +5,7 @@ import { IDayWeatherInfo } from './Interfaces'
 import globalStyles from './globalStyles'
 
 
-export default function WeatherDataBackground({ data }: { data: IDayWeatherInfo }) {
+export default function WeatherDataBackground({ pageIndex, maxTemp, minTemp }: { pageIndex: number, maxTemp: number, minTemp: number }) {
 
     return(
         <View>
@@ -14,9 +14,16 @@ export default function WeatherDataBackground({ data }: { data: IDayWeatherInfo 
                     <Grid />
                 </View>
 
+                
                 <View style={[ globalStyles.C_overlappingContainer, { alignItems: 'center' } ]}>
-                    <Cursor />
+                    { pageIndex==0 ? <Cursor /> : <></> }
                 </View> 
+                
+
+                <View style={[ globalStyles.C_overlappingContainer, { position: 'absolute', width: '20%', height: '100%', paddingLeft: '3%' } ]}>
+                    <Text style={[styles.tempsAxis, {paddingTop: 15, paddingBottom: 180}]}>{maxTemp}</Text>
+                    <Text style={styles.tempsAxis}>{minTemp}</Text>
+                </View>
             </View>
 
             <View style={{ height: '20%', width: '100%', flexDirection:'row', justifyContent: 'center', alignItems: 'center', }}>
@@ -34,7 +41,7 @@ export default function WeatherDataBackground({ data }: { data: IDayWeatherInfo 
                 </View>
 
                 <View style={[ globalStyles.C_overlappingContainer, { alignItems: 'center' } ]}>
-                    <Cursor />
+                    { pageIndex==0 ? <Cursor /> : <></> }
                 </View>
             </View>
         </View>
@@ -46,6 +53,10 @@ const styles = StyleSheet.create({
         color: 'white', 
         paddingLeft: 28, 
         paddingRight: 28,
+        fontSize: 15
+    },
+    tempsAxis: {
+        color: 'white', 
         fontSize: 15
     }
 })

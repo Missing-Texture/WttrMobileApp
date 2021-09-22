@@ -3,6 +3,8 @@ export interface IData {
     dayInfos: IDayWeatherInfo[]
 	currentTemp: string
 	currentWeather: string
+	maxTemp: number
+	minTemp: number
 }
 
 export interface IDayWeatherInfo {

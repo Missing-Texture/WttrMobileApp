@@ -39,7 +39,7 @@ export default function App() {
 
 						<View style={ [globalStyles.P_overlappingContainer, { width: 350, height: 450, marginTop: 30 }]}>
 							<View style={ globalStyles.C_overlappingContainer }>
-								<WeatherDataBackground data={data!.dayInfos[0]} />
+								<WeatherDataBackground pageIndex={pageIndex} maxTemp={data!.maxTemp} minTemp={data!.minTemp} />
 							</View>
 
 							<View style={ globalStyles.C_overlappingContainer }>
@@ -64,13 +64,13 @@ export default function App() {
 									)}
 								>
 									<View key="1">
-										<WeatherData data={data!.dayInfos[0]}/>
+										<WeatherData data={data!.dayInfos[0]} maxTemp={data!.maxTemp} minTemp={data!.minTemp}/>
 									</View>
 									<View key="2">
-										<WeatherData data={data!.dayInfos[1]}/>
+										<WeatherData data={data!.dayInfos[1]} maxTemp={data!.maxTemp} minTemp={data!.minTemp}/>
 									</View>
 									<View key="3">
-										<WeatherData data={data!.dayInfos[2]}/>
+										<WeatherData data={data!.dayInfos[2]} maxTemp={data!.maxTemp} minTemp={data!.minTemp}/>
 									</View>
 								</AnimatedPagerView>
 
