@@ -22,7 +22,7 @@ export default function WeatherDataBackground({ pageIndex, maxTemp, minTemp }: {
 
                 <View style={[ globalStyles.C_overlappingContainer, { position: 'absolute', width: '20%', height: '100%', paddingLeft: '3%' } ]}>
                     <Text style={[styles.tempsAxis, {paddingTop: 15, paddingBottom: 65}]}>{maxTemp}</Text>
-                    <Text style={[styles.tempsAxis, {paddingBottom: 90}]}>{(maxTemp+minTemp)/2}</Text>
+                    <Text style={[styles.tempsAxis, {paddingBottom: 90}]}>{Math.floor((maxTemp+minTemp)/2)}</Text>
                     <Text style={styles.tempsAxis}>{minTemp}</Text>
                 </View>
             </View>
