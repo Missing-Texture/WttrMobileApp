@@ -1,26 +1,47 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, ActivityIndicator, Animated } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator, Animated, AppState, Button } from 'react-native';
 import PagerView from 'react-native-pager-view';
 
-import { fetchData } from './src/FetchData'
+import { fetchWeatherData } from './src/FetchData'
 import WeatherData from './src/WeatherData'
 import WeatherDataBackground from './src/WeatherDataBackground'
 import InfoHeader from './src/InfoHeader'
 import Pagination from './src/Pagination';
 import globalStyles from './src/globalStyles'
+import { IData } from './src/Interfaces'
 
 
 const AnimatedPagerView = Animated.createAnimatedComponent(PagerView);
 
 export default function App() {
 
-	var specificCity = 'ingolstadt'
+	const [city, setCity] = useState('ingolstadt')
+	var url = 'http://wttr.in/'+ city +'?format=j1'
 
-	const { data, isLoading } = fetchData('http://wttr.in/'+ specificCity +'?format=j1')
+	const [isLoading, setIsLoading] = useState(true)
+	const [data, setData] = useState<IData>()
 
 	const scrollOffsetAnimatedValue = React.useRef(new Animated.Value(0)).current;
   	const positionAnimatedValue = React.useRef(new Animated.Value(0)).current;
 	const [pageIndex, setPageIndex] = React.useState(0);
+
+
+	useEffect(() => {
+		AppState.addEventListener('change', handleAppStateChange)
+	
+		return () => {
+			AppState.removeEventListener('change', handleAppStateChange)
+		};
+	}, [])
+	
+	// fetch data from api and update data state when app switches to foreground
+	function handleAppStateChange(nextAppState: string) {
+		if ( nextAppState === 'active' ) {
+			console.log("app switched to foreground")
+	
+			fetchWeatherData(url, setData, setIsLoading)
+		}
+	}
 
 
 	return (
@@ -28,7 +49,7 @@ export default function App() {
 			{/* show infinite loading circle while data is not loaded */
 				isLoading ? <ActivityIndicator /> : (
 					<View>
-						<InfoHeader data={data!}/>
+						<InfoHeader data={data!} url={url} city={city} setCity={setCity} setData={setData} setIsLoading={setIsLoading}/>
 
 						<Pagination
 							scrollOffset={scrollOffsetAnimatedValue}
@@ -37,7 +58,7 @@ export default function App() {
 							pageIndex={pageIndex}
 						/>
 
-						<View style={ [globalStyles.P_overlappingContainer, { width: 350, height: 450, marginTop: 30 }]}>
+						<View style={ [globalStyles.P_overlappingContainer, { width: 350, height: 400, marginTop: 30 }]}>
 							<View style={ globalStyles.C_overlappingContainer }>
 								<WeatherDataBackground pageIndex={pageIndex} maxTemp={data!.maxTemp} minTemp={data!.minTemp} />
 							</View>

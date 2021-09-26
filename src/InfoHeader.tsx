@@ -1,12 +1,13 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TextInput } from 'react-native';
 
+import { fetchWeatherData } from './FetchData'
 import { IData } from './Interfaces'
 import globalStyles from './globalStyles'
 import PartlyCloudy from '../assets/WeatherIcons/PartlyCloudy.svg'
 
 
-export default function WeatherData({ data }: { data: IData }) {
+export default function WeatherData({ data, url, city, setCity, setData, setIsLoading }: { data: IData, url: string, city: string, setCity: any, setData: any, setIsLoading: any }) {
 
     return(
         <View style={ styles.container }> 
@@ -14,7 +15,12 @@ export default function WeatherData({ data }: { data: IData }) {
                 <PartlyCloudy height={60} width={60} />
                 <Text style={[ styles.temperatureText, globalStyles.whiteText ]}>{data?.currentTemp}</Text>
             </View>
-            <Text style={[ styles.cityText, globalStyles.whiteText ]}>{data?.city}</Text>
+            <TextInput 
+                style={[ styles.cityText, globalStyles.whiteText ]}
+                onChangeText={setCity}
+                onEndEditing={() => { fetchWeatherData(url, setData, setIsLoading) }}
+                value={city}
+            />
         </View>
     )
 }
