@@ -5,5 +5,7 @@ import VeryCloudy from './VeryCloudy.svg'
 import LightShowers from './LightShowers.svg'
 import LightRain from './LightRain.svg'
 import HeavyRain from './HeavyRain.svg'
+import Snow from './Snow.svg'
+import Sleet from './Sleet.svg'
 
-export { Sunny, PartlyCloudy, Cloudy, VeryCloudy, LightShowers, LightRain, HeavyRain }
+export { Sunny, PartlyCloudy, Cloudy, VeryCloudy, LightShowers, LightRain, HeavyRain, Snow, Sleet }
