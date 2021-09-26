@@ -2,7 +2,7 @@
   "expo": {
     "name": "WttrApp",
     "slug": "WttrApp",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -18,12 +18,12 @@
     ],
     "ios": {
       "bundleIdentifier": "in.wttr.app",
-      "buildNumber": "1.1.0",
+      "buildNumber": "1.2.0",
       "supportsTablet": true
     },
     "android": {
       "package": "in.wttr.app",
-      "versionCode": 10100,
+      "versionCode": 10200,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
