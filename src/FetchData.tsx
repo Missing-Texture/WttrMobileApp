@@ -35,7 +35,7 @@ export function fetchWeatherData(url: any, setData: any, setIsLoading: any) {
 					rain: rains[2],
 				}],
 			'currentTemp': json.current_condition[0].temp_C + '°C',
-			'currentWeather': json.current_condition[0].weatherDesc[0].value,
+			'currentWeatherCode': Number(json.current_condition[0].weatherCode),
 			'maxTemp': Math.max.apply(null, combinedTempRange),
 			'minTemp': Math.min.apply(null, combinedTempRange),
 		})

@@ -2,7 +2,7 @@ export interface IData {
 	city: string
     dayInfos: IDayWeatherInfo[]
 	currentTemp: string
-	currentWeather: string
+	currentWeatherCode: number
 	maxTemp: number
 	minTemp: number
 }
