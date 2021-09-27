@@ -1,97 +1,89 @@
 import React, { useRef, useState } from 'react'
-import { View, Text, StyleSheet, TextInput, Modal, Pressable } from 'react-native';
+import { Box, Text, Pressable, HStack, Modal, FormControl, Input, Button } from 'native-base'
 
 import { fetchWeatherData } from './FetchData'
 import { IData } from './Interfaces'
-import globalStyles from './globalStyles'
 import WeatherIcon from './WeatherIcon';
+
 
 
 export default function WeatherData({ data, url, city, setCity, setData, setIsLoading }: { data: IData, url: string, city: string, setCity: any, setData: any, setIsLoading: any }) {
 
-    const cityTextInput = useRef<TextInput>(null)
+    const cityTextInput = useRef(null)
 
     const [modalVisible, setModalVisible] = useState(false);
 
     return(
         <>
-            <View style={ styles.container }> 
-                <View style={ styles.weatherSubContainer }>
+            <HStack pt={12} px={4} alignItems="center" justifyContent="space-between"> 
+                <HStack alignItems="center">
                     <WeatherIcon weatherCode={data?.currentWeatherCode}/>
-                    <Text style={[ styles.temperatureText, globalStyles.whiteText ]}>{data?.currentTemp}</Text>
-                </View>
+                    <Text pl={3} fontSize={'xl'} color="blueGray.100">{data?.currentTemp}</Text>
+                </HStack>
                 <Pressable onPress={() => setModalVisible(true)}>
-                    <Text style={[ styles.cityText, globalStyles.whiteText ]}>{data?.city}</Text>
+                    <Text fontSize={'3xl'} fontWeight="bold" color="blueGray.100">{data?.city}</Text>
                 </Pressable>
-            </View>
+            </HStack>
 
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                    setModalVisible(!modalVisible);
-                }}
-                onShow={() => {cityTextInput?.current?.focus()}}
-            >
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <Text style={[ styles.cityText, globalStyles.whiteText ]}>Type in your City: </Text>
-                        <TextInput 
-                            style={[ styles.cityText, globalStyles.whiteText ]}
-                            onChangeText={setCity}
-                            onEndEditing={() => { fetchWeatherData(url, setData, setIsLoading) }}
-                            // value={city}
-                            ref={cityTextInput}
-                        />
-                    </View>
-                </View>     
+            <Modal isOpen={modalVisible} onClose={() => setModalVisible(false)} initialFocusRef={cityTextInput}>
+                <Modal.Content maxWidth="80%">
+                    <Modal.CloseButton />
+                        <Modal.Header>Type in your City:</Modal.Header>
+                        <Modal.Body>
+                            <FormControl>
+                                <Input 
+                                    ref={cityTextInput} 
+                                    onChangeText={setCity} 
+                                    onEndEditing={() => { fetchWeatherData(url, setData, setIsLoading) }}
+                                />
+                            </FormControl>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button.Group >
+                                <Button
+                                    variant="ghost"
+                                    colorScheme="blueGray"
+                                    onPress={() => {
+                                        setModalVisible(false)
+                                    }}
+                                >
+                                    Cancel
+                                </Button>
+                                <Button
+                                    onPress={() => {
+                                        fetchWeatherData(url, setData, setIsLoading)
+                                        setModalVisible(false)
+                                    }}
+                                >
+                                    Search
+                                </Button>
+                            </Button.Group>
+                        </Modal.Footer>
+                    </Modal.Content>
             </Modal>
+
         </>
+            // <Modal
+            //     animationType="slide"
+            //     transparent={true}
+            //     visible={modalVisible}
+            //     onRequestClose={() => {
+            //         setModalVisible(!modalVisible);
+            //     }}
+            //     onShow={() => {cityTextInput?.current?.focus()}}
+            // >
+            //     <View style={styles.centeredView}>
+            //         <View style={styles.modalView}>
+            //             <Text style={[ styles.cityText, globalStyles.whiteText ]}>Type in your City: </Text>
+            //             <TextInput 
+            //                 style={[ styles.cityText, globalStyles.whiteText ]}
+            //                 onChangeText={setCity}
+            //                 onEndEditing={() => { fetchWeatherData(url, setData, setIsLoading) }}
+            //                 // value={city}
+            //                 ref={cityTextInput}
+            //             />
+            //         </View>
+            //     </View>     
+            // </Modal>
     )
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flexDirection: 'row', 
-        marginTop: 50, 
-        paddingLeft: 10, 
-        paddingRight: 10, 
-        alignItems: 'center', 
-        justifyContent: 'space-between',
-	},
-    weatherSubContainer: {
-        flexDirection: 'row', 
-        alignItems: 'center',
-    },
-    temperatureText: {
-        fontSize: 23, 
-        marginLeft: 15,
-    },
-    cityText: {
-        fontSize: 30, 
-        fontWeight: 'bold',
-    },
-    centeredView: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    modalView: {
-        width: '80%',
-        height: '30%',
-        margin: 20,
-        backgroundColor: "black",
-        borderRadius: 20,
-        padding: 35,
-        alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5
-    },
-});
