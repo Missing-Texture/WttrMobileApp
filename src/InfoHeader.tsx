@@ -29,7 +29,7 @@ export default function WeatherData({ data, url, city, setCity, setData, setIsLo
                 <Modal.Content maxWidth="80%">
                     <Modal.CloseButton />
                         <Modal.Header>Type in your City:</Modal.Header>
-                        <Modal.Body>
+                        <Modal.Body pt={4}>
                             <FormControl>
                                 <Input 
                                     ref={cityTextInput} 
@@ -38,7 +38,7 @@ export default function WeatherData({ data, url, city, setCity, setData, setIsLo
                                 />
                             </FormControl>
                         </Modal.Body>
-                        <Modal.Footer>
+                        <Modal.Footer pr={4} pb={4}>
                             <Button.Group >
                                 <Button
                                     variant="ghost"
