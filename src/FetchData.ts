@@ -2,47 +2,56 @@
 import * as Location from 'expo-location';
 
 
-export function fetchLocation() {
-	return new Promise((resolve, reject) => {
-		Location.requestForegroundPermissionsAsync()
-		.then(({ status }) => {
-			if (status === 'granted') {
-				Location.getCurrentPositionAsync()
-				.then(location => {
-					let coords = location.coords
+export var fetchLocation = () => new Promise<String>((resolve, reject) => {
+	Location.requestForegroundPermissionsAsync()
+	.then(({ status }) => {
+		if (status === 'granted') {
+			Location.getCurrentPositionAsync()
+			.then(location => {
+				let coords = location.coords
 
-					// test none city coords
-					// setLat(48.8142481)
-					// setLon(11.4537253)
+				// test none city coords
+				// setLat(48.8142481)
+				// setLon(11.4537253)
 
-					// console.log(coords)
+				// console.log(coords)
 
-					fetch('https://nominatim.openstreetmap.org/reverse?lat='+ coords.latitude +'&lon='+ coords.longitude +'&format=json')
-					.then(response => {
-						return response.json()
-					})
-					.then(json => {
-						// console.log(json.address)
-
-						if ('city' in json.address) {
-							resolve(json.address.city)
-						}
-						else {
-							console.log("Sorry, we could not find your nearest city")
-							resolve('')
-						}
-					})
-					.catch(error => {
-						console.error(error);
-						reject("Error")
-					})
+				fetchCity(coords.latitude, coords.longitude)
+				.then(city => {
+					resolve(city)
 				})
-			}
-		})
+				.catch(error => {
+					reject(error)
+				})
+			})
+		}
 	})
-}
+})
 
-export function fetchWeatherData(city: any, setData: any, setIsLoading: any) {
+var fetchCity = (latitude: Number, longitude: Number) => new Promise<String>((resolve, reject) => {
+	fetch('https://nominatim.openstreetmap.org/reverse?lat='+ latitude +'&lon='+ longitude +'&format=json')
+	.then(response => {
+		return response.json()
+	})
+	.then(json => {
+		// console.log(json.address)
+
+		if ('city' in json.address) {
+			resolve(json.address.city)
+		}
+		else {
+			console.log("Sorry, we could not find your nearest city")
+			resolve('')
+		}
+	})
+	.catch(error => {
+		console.error(error);
+		reject("Error")
+	})
+})
+
+
+export function fetchWeatherData(city: String, setData: any, setIsLoading: any) {
 	setIsLoading(true)
 
 	fetch('http://wttr.in/'+ city +'?format=j1')

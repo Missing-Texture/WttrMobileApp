@@ -45,7 +45,7 @@ export default function App() {
 			console.log("app switched to foreground")
 
 			fetchLocation()
-			.then(city => {
+			.then((city: String) => {
 				fetchWeatherData(city, setData, setIsLoading)
 			})
 		}
