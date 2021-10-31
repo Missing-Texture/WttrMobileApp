@@ -3,7 +3,8 @@ import { StyleSheet, Text, View, ActivityIndicator, Animated, AppState, Button }
 import PagerView from 'react-native-pager-view';
 import { NativeBaseProvider, extendTheme } from 'native-base';
 
-import { fetchWeatherData } from './src/FetchData'
+
+import { fetchLocation, fetchWeatherData } from './src/FetchData'
 import WeatherData from './src/WeatherData'
 import WeatherDataBackground from './src/WeatherDataBackground'
 import InfoHeader from './src/InfoHeader'
@@ -21,9 +22,6 @@ const customTheme = extendTheme({ config })
 const AnimatedPagerView = Animated.createAnimatedComponent(PagerView);
 
 export default function App() {
-
-	const [city, setCity] = useState('ingolstadt')
-	var url = 'http://wttr.in/'+ city +'?format=j1'
 
 	const [isLoading, setIsLoading] = useState(true)
 	const [data, setData] = useState<IData>()
@@ -45,8 +43,11 @@ export default function App() {
 	function handleAppStateChange(nextAppState: string) {
 		if ( nextAppState === 'active' ) {
 			console.log("app switched to foreground")
-	
-			fetchWeatherData(url, setData, setIsLoading)
+
+			fetchLocation()
+			.then(city => {
+				fetchWeatherData(city, setData, setIsLoading)
+			})
 		}
 	}
 
@@ -57,7 +58,7 @@ export default function App() {
 				{/* show infinite loading circle while data is not loaded */
 					isLoading ? <ActivityIndicator /> : (
 						<View>
-							<InfoHeader data={data!} url={url} city={city} setCity={setCity} setData={setData} setIsLoading={setIsLoading}/>
+							<InfoHeader data={data!} setData={setData} setIsLoading={setIsLoading}/>
 
 							<Pagination
 								scrollOffset={scrollOffsetAnimatedValue}

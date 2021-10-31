@@ -7,10 +7,11 @@ import WeatherIcon from './WeatherIcon';
 
 
 
-export default function WeatherData({ data, url, city, setCity, setData, setIsLoading }: { data: IData, url: string, city: string, setCity: any, setData: any, setIsLoading: any }) {
+export default function WeatherData({ data, setData, setIsLoading }: { data: IData, setData: any, setIsLoading: any }) {
 
     const cityTextInput = useRef(null)
 
+    const [city, setCity] = useState('')
     const [modalVisible, setModalVisible] = useState(false);
 
     return(
@@ -21,7 +22,7 @@ export default function WeatherData({ data, url, city, setCity, setData, setIsLo
                     <Text pl={3} fontSize={'xl'} color="blueGray.100">{data?.currentTemp}</Text>
                 </HStack>
                 <Pressable onPress={() => setModalVisible(true)}>
-                    <Text fontSize={'3xl'} fontWeight="bold" color="blueGray.100">{data?.city}</Text>
+                    <Text fontSize={'3xl'} fontWeight="bold" color="blueGray.100" isTruncated maxW="170px" >{data?.city}</Text>
                 </Pressable>
             </HStack>
 
@@ -34,7 +35,7 @@ export default function WeatherData({ data, url, city, setCity, setData, setIsLo
                                 <Input 
                                     ref={cityTextInput} 
                                     onChangeText={setCity} 
-                                    onEndEditing={() => { fetchWeatherData(url, setData, setIsLoading) }}
+                                    onEndEditing={() => { fetchWeatherData(city, setData, setIsLoading) }}
                                 />
                             </FormControl>
                         </Modal.Body>
@@ -51,7 +52,7 @@ export default function WeatherData({ data, url, city, setCity, setData, setIsLo
                                 </Button>
                                 <Button
                                     onPress={() => {
-                                        fetchWeatherData(url, setData, setIsLoading)
+                                        fetchWeatherData(city, setData, setIsLoading)
                                         setModalVisible(false)
                                     }}
                                 >
