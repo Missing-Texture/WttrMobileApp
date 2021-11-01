@@ -6,9 +6,10 @@ import { IData } from './Interfaces'
 import WeatherIcon from './WeatherIcon';
 
 
-
-export default function WeatherData({ data, setData, setIsLoading }: { data: IData, setData: any, setIsLoading: any }) {
-
+export default function WeatherData(
+    { data, setData, setIsLoading }: 
+    { data: IData, setData: any, setIsLoading: any }
+) {
     const cityTextInput = useRef(null)
 
     const [city, setCity] = useState('')

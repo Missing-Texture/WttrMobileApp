@@ -7,8 +7,10 @@ import { IDayWeatherInfo } from './Interfaces'
 import globalStyles from './globalStyles'
 
 
-export default function WeatherData({ data, maxTemp, minTemp }: { data: IDayWeatherInfo, maxTemp: number, minTemp: number }) {
-
+export default function WeatherData(
+    { data, maxTemp, minTemp }: 
+    { data: IDayWeatherInfo, maxTemp: number, minTemp: number }
+) {
     return(
         <View>
             <View style={[ globalStyles.P_overlappingContainer, { width: '100%', height: '55%' } ]}>

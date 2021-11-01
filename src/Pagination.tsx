@@ -5,17 +5,10 @@ import moment from 'moment'
 import { IData } from './Interfaces'
 import globalStyles from './globalStyles'
 
-export default function Pagination({ 
-    scrollOffset, 
-    scrollPosition, 
-    data,
-    pageIndex,
-}: { 
-    scrollOffset: Animated.Value; 
-    scrollPosition: Animated.Value; 
-    data: IData;
-    pageIndex: number;
-}) {
+export default function Pagination(
+  { scrollOffset, scrollPosition, data, pageIndex, }: 
+  { scrollOffset: Animated.Value, scrollPosition: Animated.Value, data: IData, pageIndex: number, }
+) {
     const weekDaysRef: any = useRef([])
     useEffect(() => {
         weekDaysRef.current.forEach((elem: any) => {

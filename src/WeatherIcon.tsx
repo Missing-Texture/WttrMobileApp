@@ -5,8 +5,10 @@ import { Sunny, PartlyCloudy, Cloudy, VeryCloudy, LightShowers, LightRain, Heavy
 
 const iconSize = 60
 
-export default function WeatherIcon({ weatherCode }: { weatherCode: number }) {
-
+export default function WeatherIcon(
+    { weatherCode }: 
+    { weatherCode: number }
+) {
     switch(weatherCode) {
         case 113: return    <Sunny height={iconSize} width={iconSize} />                                                                           // sunny
         case 116: return    <PartlyCloudy height={iconSize} width={iconSize} />                                                                    // partly cloudy
