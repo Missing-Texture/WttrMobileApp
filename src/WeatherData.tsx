@@ -1,10 +1,12 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native';
-import { LineChart, AreaChart, XAxis, YAxis } from 'react-native-svg-charts'
+import { AreaChart, XAxis, YAxis } from 'react-native-svg-charts'
 import * as shape from 'd3-shape'
 import { Grid, DayTimeAxis, Cursor } from './UiComponents'
 import { IDayWeatherInfo } from './Interfaces'
 import globalStyles from './globalStyles'
+
+import LineChart from './SvgCharts/line-chart';
 
 
 export default function WeatherData(
