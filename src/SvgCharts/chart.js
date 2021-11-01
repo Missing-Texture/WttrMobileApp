@@ -4,7 +4,7 @@ import * as shape from 'd3-shape'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import { View } from 'react-native'
-import Svg from 'react-native-svg'
+import Svg, { Defs, LinearGradient, Stop } from 'react-native-svg'
 import Path from './animated-path'
 
 class Chart extends PureComponent {
@@ -43,6 +43,7 @@ class Chart extends PureComponent {
             clampX,
             clampY,
             svg,
+            gradColors,
             children,
         } = this.props
 
@@ -94,6 +95,16 @@ class Chart extends PureComponent {
             ...paths,
         }
 
+        var test = (<><Stop offset="0" stopColor="#E92020" stopOpacity="1" />
+        <Stop offset="0.2" stopColor="#E7872D" stopOpacity="1" />
+        <Stop offset="0.4" stopColor="#E1C627" stopOpacity="1" />
+        <Stop offset="0.5" stopColor="#3ADE4E" stopOpacity="1" />
+        <Stop offset="0.6" stopColor="#3CCCD3" stopOpacity="1" />
+        <Stop offset="0.8" stopColor="#2A26CF" stopOpacity="1" />
+        <Stop offset="1" stopColor="#8E1DCE" stopOpacity="1" /></>)
+
+        var cols = [{0:"#E7872D"},{1:"#8E1DCE"}]
+
         return (
             <View style={style}>
                 <View style={{ flex: 1 }} onLayout={(event) => this._onLayout(event)}>
@@ -112,9 +123,24 @@ class Chart extends PureComponent {
                                 animate={animate}
                                 animationDuration={animationDuration}
                             />
+                            
+                            <Defs>
+                                <LinearGradient id="grad" x1="0" y1="0" x2="1" y2="0" gradientTransform="matrix(0,0.55,1,0,0,0)">
+                                    {gradColors.map((col) => <Stop offset={Object.keys(col)[0]} stopColor={Object.values(col)[0]} stopOpacity="1" key={Object.keys(col)[0]} />)}
+                                    
+                                    {/* <Stop offset="0" stopColor="#E92020" stopOpacity="1" />
+                                    <Stop offset="0.2" stopColor="#E7872D" stopOpacity="1" />
+                                    <Stop offset="0.4" stopColor="#E1C627" stopOpacity="1" />
+                                    <Stop offset="0.5" stopColor="#3ADE4E" stopOpacity="1" />
+                                    <Stop offset="0.6" stopColor="#3CCCD3" stopOpacity="1" />
+                                    <Stop offset="0.8" stopColor="#2A26CF" stopOpacity="1" />
+                                    <Stop offset="1" stopColor="#8E1DCE" stopOpacity="1" /> */}
+                                </LinearGradient>
+                            </Defs>
+
                             {React.Children.map(children, (child) => {
                                 if (child && !child.props.belowChart) {
-                                    return React.cloneElement(child, extraProps)
+                                    return React.cloneElement(child, extraProps)   
                                 }
                                 return null
                             })}
@@ -133,6 +159,8 @@ Chart.propTypes = {
         PropTypes.arrayOf(PropTypes.array),
     ]).isRequired,
     svg: PropTypes.object,
+
+    gradColors: PropTypes.array,
 
     style: PropTypes.any,
 
