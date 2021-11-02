@@ -8,6 +8,7 @@ import Pagination from './src/Pagination';
 import globalStyles from './src/globalStyles'
 import { IData } from './src/Interfaces'
 import WeatherSwiper from './src/WeatherSwiper';
+import AstronomyFooter from './src/AstronomyFooter';
 
 
 const config = {
@@ -72,6 +73,10 @@ export default function App() {
 								setPageIndex={setPageIndex}
 								scrollOffsetAV={scrollOffsetAnimatedValue}
 								positionAV={positionAnimatedValue}
+							/>
+
+							<AstronomyFooter
+								data={data!}
 							/>
 						</View>
 					)}
