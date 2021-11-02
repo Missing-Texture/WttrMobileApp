@@ -1,5 +1,6 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Box, Text, Pressable, HStack, Modal, FormControl, Input, Button } from 'native-base'
+import moment from 'moment'
 
 import { fetchWeatherData } from './FetchData'
 import { IData } from './Interfaces'
@@ -14,12 +15,26 @@ export default function WeatherData(
 
     const [city, setCity] = useState('')
     const [modalVisible, setModalVisible] = useState(false);
+    const [isDaytime, setIsDaytime] = useState(true);
+
+    // wrap codeblock in useEffect so it doesn't run unnecessarily 
+    useEffect(() => {
+        var currentTime = moment()
+        var sunrise = moment(data.sunrise, 'LT')
+        var sunset = moment(data.sunset, 'LT')
+
+        // check if current time is between sunset and sunrise
+        // change flag for night version of weather icon
+        if(currentTime < sunrise || currentTime > sunset) {
+            setIsDaytime(false)
+        }
+    }, [])
 
     return(
         <>
             <HStack pt={12} px={4} alignItems="center" justifyContent="space-between"> 
                 <HStack alignItems="center">
-                    <WeatherIcon weatherCode={data?.currentWeatherCode}/>
+                    <WeatherIcon weatherCode={data?.currentWeatherCode} dayTime={isDaytime}/>
                     <Text pl={3} fontSize={'xl'} color="blueGray.100">{data?.currentTemp}</Text>
                 </HStack>
                 <Pressable onPress={() => setModalVisible(true)}>

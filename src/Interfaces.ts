@@ -5,6 +5,8 @@ export interface IData {
 	currentWeatherCode: number
 	maxTemp: number
 	minTemp: number
+	sunrise: string
+	sunset: string
 }
 
 export interface IDayWeatherInfo {

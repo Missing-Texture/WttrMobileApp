@@ -90,6 +90,8 @@ export function fetchWeatherData(city: String, setData: any, setIsLoading: any) 
 			'currentWeatherCode': Number(json.current_condition[0].weatherCode),
 			'maxTemp': Math.max.apply(null, combinedTempRange),
 			'minTemp': Math.min.apply(null, combinedTempRange),
+			'sunrise': json.weather[0].astronomy[0].sunrise,
+			'sunset': json.weather[0].astronomy[0].sunset,
 		})
 	})
 	.catch(error => {
