@@ -3,7 +3,6 @@ import { Box, Text, HStack, Center } from 'native-base'
 import moment from 'moment'
 
 import { IData } from './Interfaces'
-import { right } from 'styled-system'
 
 
 export default function AstronomyFooter(
@@ -12,17 +11,17 @@ export default function AstronomyFooter(
 ) {
     return(
         <>
-                <HStack pt={10} justifyContent="space-evenly">
-                    <HStack>
-                        <Text pr={3} fontSize={'lg'} color="blueGray.300">Sunrise:</Text>
-                        <Text fontSize={'lg'} color="blueGray.300" fontWeight="bold">{convertToTime24(data.sunrise)}</Text>
-                    </HStack>
-                    
-                    <HStack>
-                        <Text pr={3} fontSize={'lg'} color="blueGray.300">Sunset:</Text>
-                        <Text fontSize={'lg'} color="blueGray.300" fontWeight="bold">{convertToTime24(data.sunset)}</Text>
-                    </HStack>
+            <HStack pt={10} justifyContent="space-evenly">
+                <HStack>
+                    <Text pr={3} fontSize={'lg'} color="blueGray.300">Sunrise:</Text>
+                    <Text fontSize={'lg'} color="blueGray.300" fontWeight="bold">{convertToTime24(data.sunrise)}</Text>
                 </HStack>
+                
+                <HStack>
+                    <Text pr={3} fontSize={'lg'} color="blueGray.300">Sunset:</Text>
+                    <Text fontSize={'lg'} color="blueGray.300" fontWeight="bold">{convertToTime24(data.sunset)}</Text>
+                </HStack>
+            </HStack>
         </>
     )
 }
