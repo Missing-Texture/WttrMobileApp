@@ -11,7 +11,7 @@ export default function AstronomyFooter(
 ) {
     return(
         <>
-            <HStack pt={10} justifyContent="space-evenly">
+            <HStack justifyContent="space-evenly">
                 <HStack>
                     <Text pr={3} fontSize={'lg'} color="blueGray.300">Sunrise:</Text>
                     <Text fontSize={'lg'} color="blueGray.300" fontWeight="bold">{convertToTime24(data.sunrise)}</Text>

@@ -15,6 +15,6 @@ export default StyleSheet.create({
         color: '#e8e6ff',
     },
     blackBackground: {
-        backgroundColor: '#131516'
+        backgroundColor: '#000000'
     },
 })

@@ -15,7 +15,7 @@ export default function WeatherSwiper(
     { data: IData, pageIndex: number, setPageIndex: any, scrollOffsetAV: Animated.Value, positionAV: Animated.Value }
 ) {
     return (
-        <View style={ [globalStyles.P_overlappingContainer, { width: 350, height: 400, marginTop: 30 }]}>
+        <View style={ [globalStyles.P_overlappingContainer, { width: 350, height: 400, marginTop: 20 }]}>
             <View style={ globalStyles.C_overlappingContainer }>
                 <WeatherDataBackground 
                     pageIndex={pageIndex} 

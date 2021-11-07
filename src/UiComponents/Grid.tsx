@@ -6,7 +6,7 @@ export default class Grid extends Component {
     gridStrokeColor = 'rgba(255,255,255,0.8)'
     gridStrokeWidth = 0.1
     
-    verticals: string[] = ['10%', '30%', '50%', '70%', '90%']
+    verticals: string[] = ['8%', '30.5%', '53%', '75.5%', '98%']
     horizontals: string[] = ['15%', '50%', '85%']
 
     render() {

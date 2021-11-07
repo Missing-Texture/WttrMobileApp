@@ -65,10 +65,10 @@ export default function WeatherData(
 
     return(
         <View>
-            <View style={[ globalStyles.P_overlappingContainer, { width: '100%', height: '55%' } ]}>
-                <View style={[ globalStyles.C_overlappingContainer, { alignItems: 'center', justifyContent: 'center' } ]}>
+            <View style={[ globalStyles.P_overlappingContainer, { width: '100%', height: '50%' } ]}>
+                <View style={[ globalStyles.C_overlappingContainer, { alignItems: 'center', justifyContent: 'center', marginLeft: 10 } ]}>
                     <LineChart
-                        style={{ width: '80%', height: '70%' }}
+                        style={{ width: '90%', height: '70%' }}
                         data={data.temps}
                         curve={shape.curveMonotoneX}
                         svg={{ stroke: 'url(#grad)', strokeWidth: 5 }}
@@ -80,18 +80,22 @@ export default function WeatherData(
                 </View>
             </View>
 
-            <View style={{ height: '20%', width: '100%' }}>
-            
+            <View style={{ height: '15%', width: '100%' }}>
+                {/* empty View for Axis name*/}
             </View>
 
-            <View style={{ width: '100%', height: '25%', alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ width: '100%', height: '25%', alignItems: 'center', justifyContent: 'center', marginLeft: 10 }}>
                 <AreaChart
-                    style={{ width: '80%', height: '70%' }}
+                    style={{ width: '90%', height: '70%' }}
                     data={data.rain}
                     yMax={100}
                     curve={shape.curveMonotoneX}
                     svg={{ fill: 'rgb(48, 59, 184)' }}
                 ></AreaChart>
+            </View>
+
+            <View style={{ height: '5%', width: '100%' }}>
+                {/* empty View for Axis name*/}
             </View>
         </View>
     )
