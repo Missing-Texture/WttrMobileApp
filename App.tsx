@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, ActivityIndicator, Animated, AppState, Button } from 'react-native';
+import { StyleSheet, Text, View, Animated, AppState } from 'react-native';
 import { NativeBaseProvider, extendTheme } from 'native-base';
 
 import { fetchLocation, fetchWeatherData } from './src/FetchData'
@@ -9,6 +9,7 @@ import globalStyles from './src/globalStyles'
 import { IData } from './src/Interfaces'
 import WeatherSwiper from './src/WeatherSwiper';
 import AstronomyFooter from './src/AstronomyFooter';
+import LoadingIndicator from './src/LoadingIndicator';
 
 
 const config = {
@@ -52,7 +53,7 @@ export default function App() {
 		<NativeBaseProvider theme={customTheme}>
 			<View style={[ styles.container, globalStyles.blackBackground ]}>
 				{/* show infinite loading circle while data is not loaded */
-					isLoading ? <ActivityIndicator /> : (
+					isLoading ? <LoadingIndicator /> : (
 						<View>
 							<InfoHeader 
 								data={data!} 
