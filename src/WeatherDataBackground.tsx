@@ -30,7 +30,7 @@ export default function WeatherDataBackground(
                 </View>
             </View>
 
-            <View style={{ height: '15%', width: '100%', flexDirection:'row', justifyContent: 'center', alignItems: 'center', }}>
+            <View style={{ height: '15%', width: '100%', flexDirection:'row', justifyContent: 'center', alignItems: 'center', paddingLeft: "5%" }}>
                 {/* <DayTimeAxis /> */}
                 <Text style={styles.dayTimeAxis}>00:00</Text> 
                 <Text style={styles.dayTimeAxis}>06:00</Text> 
@@ -64,13 +64,13 @@ export default function WeatherDataBackground(
 
 const styles = StyleSheet.create({
     dayTimeAxis: {
-        color: 'white', 
-        paddingLeft: 20, 
-        paddingRight: 20,
+        color: '#f1f5f9', 
+        paddingLeft: 24, 
+        paddingRight: 24,
         fontSize: 12
     },
     tempsAxis: {
-        color: 'white', 
+        color: '#f1f5f9', 
         fontSize: 12
     }
 })
