@@ -1,12 +1,14 @@
 export interface IData {
 	city: string
     dayInfos: IDayWeatherInfo[]
-	currentTemp: string
+	currentTemp: number
 	currentWeatherCode: number
 	maxTemp: number
 	minTemp: number
 	sunrise: string
 	sunset: string
+	humidity: number
+	windspeed: number
 }
 
 export interface IDayWeatherInfo {

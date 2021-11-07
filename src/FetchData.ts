@@ -86,12 +86,14 @@ export function fetchWeatherData(city: String, setData: any, setIsLoading: any) 
 					temps: temps[2],
 					rain: rains[2],
 				}],
-			'currentTemp': json.current_condition[0].temp_C + '°C',
+			'currentTemp': Number(json.current_condition[0].temp_C),
 			'currentWeatherCode': Number(json.current_condition[0].weatherCode),
 			'maxTemp': Math.max.apply(null, combinedTempRange),
 			'minTemp': Math.min.apply(null, combinedTempRange),
 			'sunrise': json.weather[0].astronomy[0].sunrise,
 			'sunset': json.weather[0].astronomy[0].sunset,
+			'humidity': Number(json.current_condition[0].humidity),
+			'windspeed': Number(json.current_condition[0].windspeedKmph),
 		})
 	})
 	.catch(error => {

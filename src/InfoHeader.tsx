@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Box, Text, Pressable, HStack, Modal, FormControl, Input, Button } from 'native-base'
+import { Box, Text, Pressable, HStack, Modal, FormControl, Input, Button, Center, SearchIcon, View, Divider, VStack } from 'native-base'
+import Svg, { Line } from 'react-native-svg'
 import moment from 'moment'
 
 import { fetchWeatherData } from './FetchData'
 import { IData } from './Interfaces'
 import WeatherIcon from './WeatherIcon';
+import { Search } from '../assets/MaterialIcons'
 
 
 export default function WeatherData(
@@ -35,12 +37,37 @@ export default function WeatherData(
             <HStack pt={12} px={4} alignItems="center" justifyContent="space-between"> 
                 <HStack alignItems="center">
                     <WeatherIcon weatherCode={data?.currentWeatherCode} dayTime={isDaytime}/>
-                    <Text pl={3} fontSize={'xl'} color="blueGray.100">{data?.currentTemp}</Text>
+                    <Text fontSize={'5xl'} color="blueGray.100" pl={5}>{data?.currentTemp}</Text>
+                    <Text fontSize={'2xl'} color="blueGray.100" pl={1} pb={4}>°C</Text>
                 </HStack>
-                <Pressable onPress={() => setModalVisible(true)}>
-                    <Text fontSize={'3xl'} fontWeight="bold" color="blueGray.100" isTruncated maxW="170px" >{data?.city}</Text>
-                </Pressable>
+                <VStack>
+                    <HStack pb={1}>
+                        <Text fontSize={'md'} color="blueGray.100" pr={2}>Humidity:</Text>
+                        <Text fontSize={'md'} color="blueGray.100">{data?.humidity}</Text>
+                        <Text fontSize={'md'} color="blueGray.100"> %</Text>
+                    </HStack>
+                    <HStack>
+                        <Text fontSize={'md'} color="blueGray.100" pr={2}>Wind:</Text>
+                        <Text fontSize={'md'} color="blueGray.100">{data?.windspeed}</Text>
+                        <Text fontSize={'md'} color="blueGray.100"> kmh</Text>
+                    </HStack>
+                </VStack>
             </HStack>
+
+            <Center pt={4} pb={2}>
+                <Pressable onPress={() => setModalVisible(true)}>
+                    <HStack alignItems="center">
+                        <Text fontSize={'3xl'} fontWeight="bold" color="blueGray.100" pr={4} isTruncated >{data?.city}</Text>
+                        <Search height={40} width={40}></Search>
+                    </HStack>
+                </Pressable>
+            </Center>
+
+            <View alignItems="center" marginBottom={-20} paddingBottom={4}>
+                <Svg style={{ width: '80%', height: '10%' }}>
+                    <Line x1={'0%'} x2={'100%'} y1={'50%'} y2={'50%'} stroke={'rgba(255,255,255,0.8)'} strokeWidth={3} />
+                </Svg>
+            </View>
 
             <Modal isOpen={modalVisible} onClose={() => setModalVisible(false)} initialFocusRef={cityTextInput}>
                 <Modal.Content maxWidth="80%">
