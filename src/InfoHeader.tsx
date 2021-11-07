@@ -70,7 +70,7 @@ export default function WeatherData(
             </View>
 
             <Modal isOpen={modalVisible} onClose={() => setModalVisible(false)} initialFocusRef={cityTextInput}>
-                <Modal.Content maxWidth="80%">
+                <Modal.Content maxWidth="80%" backgroundColor="muted.900">
                     <Modal.CloseButton />
                         <Modal.Header>Type in your City:</Modal.Header>
                         <Modal.Body pt={4}>
@@ -79,6 +79,9 @@ export default function WeatherData(
                                     ref={cityTextInput} 
                                     onChangeText={setCity} 
                                     onEndEditing={() => { fetchWeatherData(city, setData, setIsLoading) }}
+                                    _focus={{
+                                        borderColor: "info.500"
+                                    }}
                                 />
                             </FormControl>
                         </Modal.Body>
@@ -94,6 +97,7 @@ export default function WeatherData(
                                     Cancel
                                 </Button>
                                 <Button
+                                    colorScheme="info"
                                     onPress={() => {
                                         fetchWeatherData(city, setData, setIsLoading)
                                         setModalVisible(false)
