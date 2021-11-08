@@ -55,7 +55,7 @@ export default function WeatherDataBackground(
                 </View>
             </View>
 
-            <View style={{ height: '5%', width: '100%', justifyContent: 'center', alignItems: 'center', paddingTop: 20, }}>
+            <View style={{ height: '5%', width: '100%', justifyContent: 'center', alignItems: 'center', paddingTop: 20, paddingLeft: '5%' }}>
                 <Text style={ styles.tempsAxis }>Chance of Rain</Text>
             </View>
         </View>
