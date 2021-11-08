@@ -10,7 +10,7 @@ export default function WeatherIcon(
     { weatherCode: number, dayTime: boolean }
 ) {
     switch(weatherCode) {
-        case 113: return    dayTime ? <Sunny height={iconSize} width={iconSize} /> : <SunnyNight height={iconSize} width={iconSize} />                  // sunny
+        case 113: return    dayTime ? <Sunny height={iconSize*0.9} width={iconSize*0.9} /> : <SunnyNight height={iconSize*0.7} width={iconSize*0.7} />                  // sunny
         case 116: return    dayTime ? <PartlyCloudy height={iconSize} width={iconSize} /> : <PartlyCloudyNight height={iconSize} width={iconSize} />    // partly cloudy
         case 119: return    <Cloudy height={iconSize} width={iconSize} />                                                                               // cloudy
         case 122: return    <VeryCloudy height={iconSize} width={iconSize} />                                                                           // very cloudy
