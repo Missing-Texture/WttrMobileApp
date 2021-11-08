@@ -54,20 +54,19 @@ export default function WeatherData(
                 </VStack>
             </HStack>
 
-            <Center pt={4} pb={2}>
+            <Center mt={-10} mb={-20}>
                 <Pressable onPress={() => setModalVisible(true)}>
                     <HStack alignItems="center">
                         <Text fontSize={'3xl'} fontWeight="bold" color="blueGray.100" pr={4} isTruncated >{data?.city}</Text>
                         <Search height={40} width={40}></Search>
                     </HStack>
+                    <View alignItems="center" pt={1} pr={1}>
+                        <Svg style={{ width: '110%', height: '20%' }}>
+                            <Line x1={'0%'} x2={'100%'} y1={'50%'} y2={'50%'} stroke={'rgba(255,255,255,0.8)'} strokeWidth={3} />
+                        </Svg>
+                    </View>
                 </Pressable>
             </Center>
-
-            <View alignItems="center" marginBottom={-20} paddingBottom={4}>
-                <Svg style={{ width: '80%', height: '10%' }}>
-                    <Line x1={'0%'} x2={'100%'} y1={'50%'} y2={'50%'} stroke={'rgba(255,255,255,0.8)'} strokeWidth={3} />
-                </Svg>
-            </View>
 
             <Modal isOpen={modalVisible} onClose={() => setModalVisible(false)} initialFocusRef={cityTextInput}>
                 <Modal.Content maxWidth="80%" backgroundColor="muted.900">
