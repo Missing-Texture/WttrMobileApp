@@ -54,7 +54,7 @@ export default function WeatherData(
                 </VStack>
             </HStack>
 
-            <Center mt={-10} mb={-20}>
+            <Center mt={-50} mb={-90}>
                 <Pressable onPress={() => setModalVisible(true)}>
                     <HStack alignItems="center">
                         <Text fontSize={'3xl'} fontWeight="bold" color="blueGray.100" pr={4} isTruncated >{data?.city}</Text>
