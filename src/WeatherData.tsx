@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet } from 'react-native';
 import { AreaChart, XAxis, YAxis } from 'react-native-svg-charts'
 import * as shape from 'd3-shape'
+import Svg, { Line } from 'react-native-svg'
+
 import { Grid, DayTimeAxis, Cursor } from './UiComponents'
 import { IDayWeatherInfo } from './Interfaces'
 import globalStyles from './globalStyles'
-
 import LineChart from './SvgCharts/line-chart';
 
 
@@ -84,14 +85,22 @@ export default function WeatherData(
                 {/* empty View for Axis name*/}
             </View>
 
-            <View style={{ width: '100%', height: '25%', alignItems: 'center', justifyContent: 'center', marginLeft: 10 }}>
-                <AreaChart
-                    style={{ width: '90%', height: '70%' }}
-                    data={data.rain}
-                    yMax={100}
-                    curve={shape.curveMonotoneX}
-                    svg={{ fill: 'rgb(48, 59, 184)' }}
-                ></AreaChart>
+            <View style={[ globalStyles.P_overlappingContainer, { width: '100%', height: '25%', marginLeft: 10 } ]}>
+                <View style={[ globalStyles.C_overlappingContainer , { alignItems: 'center', justifyContent: 'center' } ]}>
+                    <AreaChart
+                        style={{ width: '90%', height: '70%' }}
+                        data={data.rain}
+                        yMax={100}
+                        curve={shape.curveMonotoneX}
+                        svg={{ fill: 'rgb(48, 59, 184)' }}
+                    ></AreaChart>
+                </View>
+                {/* thin 0% indication line for better visual clarity */}
+                <View style={[ globalStyles.C_overlappingContainer, { alignItems: 'center', justifyContent: 'center' } ]}>
+                    <Svg style={{ width: '90%', height: '100%' }}>
+                        <Line x1={'0%'} x2={'100%'} y1={'85%'} y2={'85%'} stroke={'rgb(48, 59, 184)'} strokeWidth={1} />
+                    </Svg> 
+                </View>
             </View>
 
             <View style={{ height: '5%', width: '100%' }}>

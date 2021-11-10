@@ -39,7 +39,7 @@ export default function WeatherSwiper(
                         ],
                         {
                             listener: ({ nativeEvent: { offset, position } }: {nativeEvent: { offset: number, position:number }}) => {
-                                console.log(`Position: ${position} Offset: ${offset}`);
+                                // console.log(`Position: ${position} Offset: ${offset}`);
                                 // save position or page index in separate state so it can be passed and easier accessed
                                 setPageIndex(position)
                             },
