@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Animated, AppState } from 'react-native';
 
 import globalStyles from './globalStyles'
 import { IData } from './Interfaces'
+import { WeatherDataContext } from './WeatherDataContext'
 import { fetchLocation, fetchWeatherData } from './WeatherScreen/FetchData'
 import InfoHeader from './WeatherScreen/InfoHeader'
 import Pagination from './WeatherScreen/Pagination';
@@ -43,38 +44,31 @@ export default function WeatherScreen() {
 
 
 	return (
-		<View style={[ styles.container, globalStyles.blackBackground ]}>
-			{/* show infinite loading circle while data is not loaded */
-				isLoading ? <LoadingIndicator /> : (
-					<View>
-						<InfoHeader 
-							data={data!} 
-							setData={setData} 
-							setIsLoading={setIsLoading}
-						/>
+		<WeatherDataContext.Provider value={{ data, setData, isLoading, setIsLoading }}>
+			<View style={[ styles.container, globalStyles.blackBackground ]}>
+				{/* show infinite loading circle while data is not loaded */
+					isLoading ? <LoadingIndicator /> : (
+						<View>
+							<InfoHeader />
 
-						<Pagination
-							scrollOffset={scrollOffsetAnimatedValue}
-							scrollPosition={positionAnimatedValue}
-							data={data!}
-							pageIndex={pageIndex}
-						/>
+							<Pagination
+								scrollOffset={scrollOffsetAnimatedValue}
+								scrollPosition={positionAnimatedValue}
+								pageIndex={pageIndex}
+							/>
 
-						<WeatherSwiper 
-							data={data!}
-							pageIndex={pageIndex}
-							setPageIndex={setPageIndex}
-							scrollOffsetAV={scrollOffsetAnimatedValue}
-							positionAV={positionAnimatedValue}
-						/>
+							<WeatherSwiper 
+								pageIndex={pageIndex}
+								setPageIndex={setPageIndex}
+								scrollOffsetAV={scrollOffsetAnimatedValue}
+								positionAV={positionAnimatedValue}
+							/>
 
-						<AstronomyFooter
-							data={data!}
-							
-						/>
-					</View>
-				)}
-		</View>
+							<AstronomyFooter />
+						</View>
+					)}
+			</View>
+		</WeatherDataContext.Provider>
 	)
 }
 

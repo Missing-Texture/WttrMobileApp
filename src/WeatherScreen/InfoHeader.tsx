@@ -1,18 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Box, Text, Pressable, HStack, Modal, FormControl, Input, Button, Center, SearchIcon, View, Divider, VStack } from 'native-base'
 import Svg, { Line } from 'react-native-svg'
 import moment from 'moment'
 
 import { fetchWeatherData } from './FetchData'
-import { IData } from '../Interfaces'
 import WeatherIcon from './WeatherIcon';
 import { Search } from '../../assets/MaterialIcons'
+import { WeatherDataContext } from '../WeatherDataContext'
 
 
-export default function WeatherData(
-    { data, setData, setIsLoading }: 
-    { data: IData, setData: any, setIsLoading: any }
-) {
+export default function InfoHeader() {
+    const { data, setData, setIsLoading } = useContext(WeatherDataContext)
+
     const cityTextInput = useRef(null)
 
     const [city, setCity] = useState('')
@@ -22,8 +21,8 @@ export default function WeatherData(
     // wrap codeblock in useEffect so it doesn't run unnecessarily 
     useEffect(() => {
         var currentTime = moment()
-        var sunrise = moment(data.sunrise, 'LT')
-        var sunset = moment(data.sunset, 'LT')
+        var sunrise = moment(data!.sunrise, 'LT')
+        var sunset = moment(data!.sunset, 'LT')
 
         // check if current time is between sunset and sunrise
         // change flag for night version of weather icon
@@ -36,19 +35,19 @@ export default function WeatherData(
         <>
             <HStack pt={12} px={4} alignItems="center" justifyContent="space-between"> 
                 <HStack alignItems="center">
-                    <WeatherIcon weatherCode={data?.currentWeatherCode} dayTime={isDaytime}/>
-                    <Text fontSize={'5xl'} color="blueGray.100" pl={5}>{data?.currentTemp}</Text>
+                    <WeatherIcon weatherCode={data!.currentWeatherCode} dayTime={isDaytime}/>
+                    <Text fontSize={'5xl'} color="blueGray.100" pl={5}>{data!.currentTemp}</Text>
                     <Text fontSize={'2xl'} color="blueGray.100" pl={1} pb={4}>°C</Text>
                 </HStack>
                 <VStack>
                     <HStack pb={1}>
                         <Text fontSize={'md'} color="blueGray.100" pr={2}>Humidity:</Text>
-                        <Text fontSize={'md'} color="blueGray.100">{data?.humidity}</Text>
+                        <Text fontSize={'md'} color="blueGray.100">{data!.humidity}</Text>
                         <Text fontSize={'md'} color="blueGray.100"> %</Text>
                     </HStack>
                     <HStack>
                         <Text fontSize={'md'} color="blueGray.100" pr={2}>Wind:</Text>
-                        <Text fontSize={'md'} color="blueGray.100">{data?.windspeed}</Text>
+                        <Text fontSize={'md'} color="blueGray.100">{data!.windspeed}</Text>
                         <Text fontSize={'md'} color="blueGray.100"> kmh</Text>
                     </HStack>
                 </VStack>
@@ -57,7 +56,7 @@ export default function WeatherData(
             <Center mt={-50} mb={-90}>
                 <Pressable onPress={() => setModalVisible(true)}>
                     <HStack alignItems="center">
-                        <Text fontSize={'3xl'} fontWeight="bold" color="blueGray.100" pr={4} isTruncated >{data?.city}</Text>
+                        <Text fontSize={'3xl'} fontWeight="bold" color="blueGray.100" pr={4} isTruncated >{data!.city}</Text>
                         <Search height={40} width={40}></Search>
                     </HStack>
                     <View alignItems="center" pt={1} pr={1}>

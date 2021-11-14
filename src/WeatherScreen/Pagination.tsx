@@ -1,15 +1,18 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { StyleSheet, Text, View, ActivityIndicator, Animated } from 'react-native';
 import moment from 'moment'
 
-import { IData } from '../Interfaces'
 import globalStyles from '../globalStyles'
+import { WeatherDataContext } from '../WeatherDataContext';
+
 
 export default function Pagination(
-  { scrollOffset, scrollPosition, data, pageIndex, }: 
-  { scrollOffset: Animated.Value, scrollPosition: Animated.Value, data: IData, pageIndex: number, }
+  { scrollOffset, scrollPosition, pageIndex, }: 
+  { scrollOffset: Animated.Value, scrollPosition: Animated.Value, pageIndex: number, }
 ) {
-    const weekDaysRef: any = useRef([])
+  	const { data } = useContext(WeatherDataContext)
+
+  	const weekDaysRef: any = useRef([])
     useEffect(() => {
         weekDaysRef.current.forEach((elem: any) => {
             elem.setNativeProps({style: { fontWeight: 'normal', opacity: 0.6 }})

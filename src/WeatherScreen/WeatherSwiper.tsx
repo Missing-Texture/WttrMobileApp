@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, View, Animated } from 'react-native';
 import PagerView from 'react-native-pager-view';
 
@@ -6,14 +6,17 @@ import WeatherData from './WeatherData'
 import WeatherDataBackground from './WeatherDataBackground'
 import globalStyles from '../globalStyles'
 import { IData } from '../Interfaces'
+import { WeatherDataContext } from '../WeatherDataContext';
 
 
 const AnimatedPagerView = Animated.createAnimatedComponent(PagerView);
 
 export default function WeatherSwiper(
-    { data, pageIndex, setPageIndex, scrollOffsetAV, positionAV }: 
-    { data: IData, pageIndex: number, setPageIndex: any, scrollOffsetAV: Animated.Value, positionAV: Animated.Value }
+    {pageIndex, setPageIndex, scrollOffsetAV, positionAV }: 
+    {pageIndex: number, setPageIndex: any, scrollOffsetAV: Animated.Value, positionAV: Animated.Value }
 ) {
+    const { data } = useContext(WeatherDataContext)
+
     return (
         <View style={ [globalStyles.P_overlappingContainer, { width: 350, height: 400, marginTop: 20 }]}>
             <View style={ globalStyles.C_overlappingContainer }>
