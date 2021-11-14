@@ -5,12 +5,15 @@ import moment from 'moment'
 import { IData } from '../Interfaces'
 import { Pressable } from 'react-native'
 import { Menu } from '../../assets/MaterialIcons'
+import { useNavigation } from '@react-navigation/core'
 
 
 export default function AstronomyFooter(
     {data}:
     {data: IData}
 ) {
+    const navigation = useNavigation<any>()
+
     return(
         <>
             <HStack justifyContent="space-between">
@@ -27,7 +30,7 @@ export default function AstronomyFooter(
                 </VStack>
 
                 <View mr={4}>
-                    <Pressable>
+                    <Pressable onPress={() => navigation.navigate('Settings')}>
                         <Menu height={50} width={50}></Menu>
                     </Pressable>
                 </View>

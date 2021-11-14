@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, Animated, AppState } from 'react-native';
-import { NativeBaseProvider, extendTheme } from 'native-base';
 
 import globalStyles from './globalStyles'
 import { IData } from './Interfaces'
@@ -11,12 +10,6 @@ import WeatherSwiper from './WeatherScreen/WeatherSwiper';
 import AstronomyFooter from './WeatherScreen/AstronomyFooter';
 import LoadingIndicator from './WeatherScreen/LoadingIndicator';
 
-
-const config = {
-	useSystemColorMode: false,
-	initialColorMode: 'dark',
-}
-const customTheme = extendTheme({ config })
 
 export default function WeatherScreen() {
 
@@ -50,40 +43,39 @@ export default function WeatherScreen() {
 
 
 	return (
-		<NativeBaseProvider theme={customTheme}>
-			<View style={[ styles.container, globalStyles.blackBackground ]}>
-				{/* show infinite loading circle while data is not loaded */
-					isLoading ? <LoadingIndicator /> : (
-						<View>
-							<InfoHeader 
-								data={data!} 
-								setData={setData} 
-								setIsLoading={setIsLoading}
-							/>
+		<View style={[ styles.container, globalStyles.blackBackground ]}>
+			{/* show infinite loading circle while data is not loaded */
+				isLoading ? <LoadingIndicator /> : (
+					<View>
+						<InfoHeader 
+							data={data!} 
+							setData={setData} 
+							setIsLoading={setIsLoading}
+						/>
 
-							<Pagination
-								scrollOffset={scrollOffsetAnimatedValue}
-								scrollPosition={positionAnimatedValue}
-								data={data!}
-								pageIndex={pageIndex}
-							/>
+						<Pagination
+							scrollOffset={scrollOffsetAnimatedValue}
+							scrollPosition={positionAnimatedValue}
+							data={data!}
+							pageIndex={pageIndex}
+						/>
 
-							<WeatherSwiper 
-								data={data!}
-								pageIndex={pageIndex}
-								setPageIndex={setPageIndex}
-								scrollOffsetAV={scrollOffsetAnimatedValue}
-								positionAV={positionAnimatedValue}
-							/>
+						<WeatherSwiper 
+							data={data!}
+							pageIndex={pageIndex}
+							setPageIndex={setPageIndex}
+							scrollOffsetAV={scrollOffsetAnimatedValue}
+							positionAV={positionAnimatedValue}
+						/>
 
-							<AstronomyFooter
-								data={data!}
-							/>
-						</View>
-					)}
-			</View>
-		</NativeBaseProvider>
-	);
+						<AstronomyFooter
+							data={data!}
+							
+						/>
+					</View>
+				)}
+		</View>
+	)
 }
 
 const styles = StyleSheet.create({
