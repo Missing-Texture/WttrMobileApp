@@ -2,9 +2,9 @@ import React from 'react'
 import { Box, Text, HStack, VStack, Center, View } from 'native-base'
 import moment from 'moment'
 
-import { IData } from './Interfaces'
+import { IData } from '../Interfaces'
 import { Pressable } from 'react-native'
-import { Menu } from '../assets/MaterialIcons'
+import { Menu } from '../../assets/MaterialIcons'
 
 
 export default function AstronomyFooter(

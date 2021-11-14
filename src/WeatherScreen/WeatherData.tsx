@@ -5,9 +5,9 @@ import * as shape from 'd3-shape'
 import Svg, { Line } from 'react-native-svg'
 
 import { Grid, DayTimeAxis, Cursor } from './UiComponents'
-import { IDayWeatherInfo } from './Interfaces'
-import globalStyles from './globalStyles'
-import LineChart from './SvgCharts/line-chart';
+import { IDayWeatherInfo } from '../Interfaces'
+import globalStyles from '../globalStyles'
+import LineChart from '../SvgCharts/line-chart';
 
 
 export default function WeatherData(

@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native';
 import { Grid, DayTimeAxis, Cursor } from './UiComponents'
-import { IDayWeatherInfo } from './Interfaces'
-import globalStyles from './globalStyles'
+import { IDayWeatherInfo } from '../Interfaces'
+import globalStyles from '../globalStyles'
 
 
 export default function WeatherDataBackground(

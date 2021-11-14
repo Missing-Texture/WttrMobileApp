@@ -4,8 +4,8 @@ import PagerView from 'react-native-pager-view';
 
 import WeatherData from './WeatherData'
 import WeatherDataBackground from './WeatherDataBackground'
-import globalStyles from './globalStyles'
-import { IData } from './Interfaces'
+import globalStyles from '../globalStyles'
+import { IData } from '../Interfaces'
 
 
 const AnimatedPagerView = Animated.createAnimatedComponent(PagerView);

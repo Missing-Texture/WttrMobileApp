@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, ActivityIndicator, Animated } from 'react-native';
 import moment from 'moment'
 
-import { IData } from './Interfaces'
-import globalStyles from './globalStyles'
+import { IData } from '../Interfaces'
+import globalStyles from '../globalStyles'
 
 export default function Pagination(
   { scrollOffset, scrollPosition, data, pageIndex, }: 

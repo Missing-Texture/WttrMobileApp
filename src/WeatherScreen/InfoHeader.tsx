@@ -4,9 +4,9 @@ import Svg, { Line } from 'react-native-svg'
 import moment from 'moment'
 
 import { fetchWeatherData } from './FetchData'
-import { IData } from './Interfaces'
+import { IData } from '../Interfaces'
 import WeatherIcon from './WeatherIcon';
-import { Search } from '../assets/MaterialIcons'
+import { Search } from '../../assets/MaterialIcons'
 
 
 export default function WeatherData(
