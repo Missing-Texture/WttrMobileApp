@@ -16,3 +16,8 @@ export interface IDayWeatherInfo {
 	temps: number[]
 	rain: number[]
 }
+
+export interface IPreferences {
+	MeasuringSystem: string
+    TemperatureScale: string
+}
