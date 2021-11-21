@@ -7,10 +7,13 @@ import { fetchWeatherData } from './FetchData'
 import WeatherIcon from './WeatherIcon';
 import { Search } from '../../assets/MaterialIcons'
 import { WeatherDataContext } from '../WeatherDataContext'
+import { PreferenceContext } from '../PreferenceContext'
+import { PreferenceValues } from '../PreferenceManager'
 
 
 export default function InfoHeader() {
     const { data, setData, setIsLoading } = useContext(WeatherDataContext)
+    const { preferences } = useContext(PreferenceContext)
 
     const cityTextInput = useRef(null)
 
@@ -37,7 +40,9 @@ export default function InfoHeader() {
                 <HStack alignItems="center">
                     <WeatherIcon weatherCode={data!.currentWeatherCode} dayTime={isDaytime}/>
                     <Text fontSize={'5xl'} color="blueGray.100" pl={5}>{data!.currentTemp}</Text>
-                    <Text fontSize={'2xl'} color="blueGray.100" pl={1} pb={4}>°C</Text>
+                    <Text fontSize={'2xl'} color="blueGray.100" pl={1} pb={4}>
+                        {preferences.MeasuringSystem == PreferenceValues.MeasuringSystem.metric ? "°C" : "°F"}
+                    </Text>
                 </HStack>
                 <VStack>
                     <HStack pb={1}>
@@ -48,7 +53,9 @@ export default function InfoHeader() {
                     <HStack>
                         <Text fontSize={'md'} color="blueGray.100" pr={2}>Wind:</Text>
                         <Text fontSize={'md'} color="blueGray.100">{data!.windspeed}</Text>
-                        <Text fontSize={'md'} color="blueGray.100"> kmh</Text>
+                        <Text fontSize={'md'} color="blueGray.100">
+                            {preferences.MeasuringSystem == PreferenceValues.MeasuringSystem.metric ? " kmh" : " mph"}
+                        </Text>
                     </HStack>
                 </VStack>
             </HStack>
@@ -76,7 +83,7 @@ export default function InfoHeader() {
                                 <Input 
                                     ref={cityTextInput} 
                                     onChangeText={setCity} 
-                                    onEndEditing={() => { fetchWeatherData(city, setData, setIsLoading) }}
+                                    onEndEditing={() => { fetchWeatherData(city, setData, setIsLoading, preferences) }}
                                     _focus={{
                                         borderColor: "info.500"
                                     }}
@@ -97,7 +104,7 @@ export default function InfoHeader() {
                                 <Button
                                     colorScheme="info"
                                     onPress={() => {
-                                        fetchWeatherData(city, setData, setIsLoading)
+                                        fetchWeatherData(city, setData, setIsLoading, preferences)
                                         setModalVisible(false)
                                     }}
                                 >

@@ -1,5 +1,8 @@
-
 import * as Location from 'expo-location';
+import { useContext } from 'react';
+import { IPreferences } from '../Interfaces';
+import { PreferenceContext } from '../PreferenceContext';
+import { PreferenceValues } from '../PreferenceManager';
 
 
 export var fetchLocation = () => new Promise<String>((resolve, reject) => {
@@ -51,7 +54,7 @@ var fetchCity = (latitude: Number, longitude: Number) => new Promise<String>((re
 })
 
 
-export function fetchWeatherData(city: String, setData: any, setIsLoading: any) {
+export function fetchWeatherData(city: String, setData: any, setIsLoading: any, preferences: IPreferences) {
 	setIsLoading(true)
 
 	fetch('http://wttr.in/'+ city +'?format=j1')
@@ -59,10 +62,45 @@ export function fetchWeatherData(city: String, setData: any, setIsLoading: any) 
 		return response.json()
 	})
 	.then(json => {
+		var selected_current_temp = "temp_C"
+		var	selected_temp = "tempC"
+		var	selected_windspeed = "windspeedKmph"
+
+		// decide which values to use based on users preferences
+		if (preferences.MeasuringSystem == PreferenceValues.MeasuringSystem.metric &&
+			preferences.TemperatureScale == PreferenceValues.TemperatureScale.actual) 
+		{
+			selected_current_temp = "temp_C"
+			selected_temp = "tempC"
+			selected_windspeed = "windspeedKmph"
+		} 
+		else if (preferences.MeasuringSystem == PreferenceValues.MeasuringSystem.metric &&
+			preferences.TemperatureScale == PreferenceValues.TemperatureScale.feels_like) 
+		{ 
+			selected_current_temp = "FeelsLikeC"
+			selected_temp = "FeelsLikeC"
+			selected_windspeed = "windspeedKmph"
+		} 
+		else if (preferences.MeasuringSystem == PreferenceValues.MeasuringSystem.imperial &&
+			preferences.TemperatureScale == PreferenceValues.TemperatureScale.actual) 
+		{
+			selected_current_temp = "temp_F"
+			selected_temp = "tempF"
+			selected_windspeed = "windspeedMiles"
+		} 
+		else if (preferences.MeasuringSystem == PreferenceValues.MeasuringSystem.imperial &&
+			preferences.TemperatureScale == PreferenceValues.TemperatureScale.feels_like) 
+		{
+			selected_current_temp = "FeelsLikeF"
+			selected_temp = "FeelsLikeF"
+			selected_windspeed = "windspeedMiles"
+		}
+
+
 		let temps = []
 		let rains = []
 		for (let i = 0; i < 3; i++) {
-			temps[i] = json.weather[i].hourly.map((datapoint: any) => { return Number(datapoint.tempC) })
+			temps[i] = json.weather[i].hourly.map((datapoint: any) => { return Number(datapoint[selected_temp]) })
 			rains[i] = json.weather[i].hourly.map((datapoint: any) => { return Number(datapoint.chanceofrain) })
 		}
 
@@ -86,14 +124,14 @@ export function fetchWeatherData(city: String, setData: any, setIsLoading: any) 
 					temps: temps[2],
 					rain: rains[2],
 				}],
-			'currentTemp': Number(json.current_condition[0].temp_C),
+			'currentTemp': Number(json.current_condition[0][selected_current_temp]),
 			'currentWeatherCode': Number(json.current_condition[0].weatherCode),
 			'maxTemp': Math.max.apply(null, combinedTempRange),
 			'minTemp': Math.min.apply(null, combinedTempRange),
 			'sunrise': json.weather[0].astronomy[0].sunrise,
 			'sunset': json.weather[0].astronomy[0].sunset,
 			'humidity': Number(json.current_condition[0].humidity),
-			'windspeed': Number(json.current_condition[0].windspeedKmph),
+			'windspeed': Number(json.current_condition[0][selected_windspeed]),
 		})
 	})
 	.catch(error => {

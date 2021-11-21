@@ -4,11 +4,15 @@ import { useNavigation } from '@react-navigation/core'
 
 import { storePreferences, getPreferences, PreferenceValues } from './PreferenceManager';
 import { PreferenceContext } from './PreferenceContext';
+import { WeatherDataContext } from './WeatherDataContext';
+import { fetchLocation, fetchWeatherData } from './WeatherScreen/FetchData';
 
 
 export default function SettingsScreen() {
     const navigation = useNavigation<any>()
     const { preferences, setPreferences } = useContext(PreferenceContext)
+
+    const { setData, setIsLoading } = useContext(WeatherDataContext)
 
     return(
         <VStack>
@@ -22,6 +26,7 @@ export default function SettingsScreen() {
                         pref.MeasuringSystem = value
                         setPreferences(pref)
                         storePreferences(pref)
+                        refetchWeatherData()
                     }}
                 >
                     <Select.Item label="Metric" value={PreferenceValues.MeasuringSystem.metric} />
@@ -39,6 +44,7 @@ export default function SettingsScreen() {
                         pref.TemperatureScale = value
                         setPreferences(pref)
                         storePreferences(pref)
+                        refetchWeatherData()
                     }}
                 >
                     <Select.Item label="actual" value={PreferenceValues.TemperatureScale.actual} />
@@ -51,6 +57,13 @@ export default function SettingsScreen() {
             </Button>
         </VStack>
     )
+
+    function refetchWeatherData() {
+        fetchLocation()
+        .then((city: String) => {
+            fetchWeatherData(city, setData, setIsLoading, preferences)
+        })
+    }
 }
 
 function Preference({ children }: {children: any}) {
