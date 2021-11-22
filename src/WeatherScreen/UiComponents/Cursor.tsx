@@ -4,7 +4,7 @@ import { Svg, G, Line } from 'react-native-svg'
 export default class Cursor extends Component {
 
     cursorStrokeColor = 'rgba(207,68,211,0.8)'
-    cursorStrokeWidth = 5
+    cursorStrokeWidth = 3
 
     current: string = this.getPassedTimePercent()
     
@@ -18,13 +18,15 @@ export default class Cursor extends Component {
 
         let currentMsPassed = currentTime.getTime() - startOfDay.getTime()
 
-        // convert float to 2 digit percentage string 0.75323 -> '75%'
-        return (currentMsPassed/msInDay).toFixed(2).slice(2) + '%'
+        // * 0.9 + 5 is used as an offset
+        // this in combination with 105% svg canvas width fixes that 
+        // the cursor stroke can't be displayed in full width at values close to the edges
+        return (currentMsPassed/msInDay) * 100 * 0.90 + 5 + '%'
     }
 
     render() {
         return(
-            <Svg style={{ width: '80%', height: '100%' }}>
+            <Svg style={{ width: '105%', height: '100%' }}>
                 <Line
                     key={0}
                     y1={'0%'}

@@ -21,7 +21,7 @@ export default function WeatherDataBackground(
                 </View>
 
                 
-                <View style={[ globalStyles.C_overlappingContainer, { alignItems: 'center' } ]}>
+                <View style={[ globalStyles.C_overlappingContainer, { alignItems: 'center', paddingLeft: '5%' } ]}>
                     { pageIndex==0 ? <Cursor /> : <></> }
                 </View> 
                 
@@ -50,7 +50,7 @@ export default function WeatherDataBackground(
                     <Grid />
                 </View>
 
-                <View style={[ globalStyles.C_overlappingContainer, { alignItems: 'center' } ]}>
+                <View style={[ globalStyles.C_overlappingContainer, { alignItems: 'center', paddingLeft: '5%' } ]}>
                     { pageIndex==0 ? <Cursor /> : <></> }
                 </View>
 
