@@ -58,25 +58,14 @@ export default function CreditScreen() {
             author: "moment",
             url: "https://github.com/moment/moment/"
         },
-        {
-            title: "",
-            author: "",
-            url: ""
-        },
     ]
 
     return(
-        <VStack>
-                <Text>wttr.in api + Inspiration for this Project</Text>
-                <Text>icons</Text>
-                <Text>npm packages</Text>
-
-                <ScrollView>
-                {credits.map((credit, i) => {
-                    return(<Credit title={credit.title} author={credit.author} url={credit.url} key={i}/>)
-                })}
-                </ScrollView>
-        </VStack>
+        <ScrollView>
+            {credits.map((credit, i) => {
+                return(<Credit title={credit.title} author={credit.author} url={credit.url} key={i}/>)
+            })}
+        </ScrollView>
     )
 }
 

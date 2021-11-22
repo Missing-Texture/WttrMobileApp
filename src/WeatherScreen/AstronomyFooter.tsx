@@ -29,7 +29,7 @@ export default function AstronomyFooter() {
                 </VStack>
 
                 <View mr={4}>
-                    <Pressable onPress={() => navigation.navigate('Settings')}>
+                    <Pressable onPress={() => navigation.navigate('Preferences')}>
                         <Menu height={50} width={50}></Menu>
                     </Pressable>
                 </View>

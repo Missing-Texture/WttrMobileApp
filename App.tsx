@@ -4,11 +4,10 @@ import { DarkTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import WeatherScreen from './src/WeatherScreen';
-import SettingsScreen from './src/PreferencesScreen';
+import PreferencesScreen from './src/PreferencesScreen';
 import CreditScreen from './src/CreditScreen';
 import { PreferenceContext } from './src/PreferenceContext';
 import { IData, IPreferences } from './src/Interfaces';
-import { getPreferences, PreferenceValues } from './src/PreferenceManager';
 import { WeatherDataContext } from './src/WeatherDataContext';
 
 
@@ -45,8 +44,8 @@ export default function App() {
 								}}
 							/>
 							<Stack.Screen 
-								name="Settings"
-								component={SettingsScreen}
+								name="Preferences"
+								component={PreferencesScreen}
 							/>
 							<Stack.Screen 
 								name="Credits"

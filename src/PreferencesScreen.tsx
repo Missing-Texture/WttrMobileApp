@@ -6,9 +6,10 @@ import { storePreferences, getPreferences, PreferenceValues } from './Preference
 import { PreferenceContext } from './PreferenceContext';
 import { WeatherDataContext } from './WeatherDataContext';
 import { fetchLocation, fetchWeatherData } from './WeatherScreen/FetchData';
+import { Pressable } from 'react-native';
 
 
-export default function SettingsScreen() {
+export default function PreferencesScreen() {
     const navigation = useNavigation<any>()
     const { preferences, setPreferences } = useContext(PreferenceContext)
 
@@ -52,9 +53,11 @@ export default function SettingsScreen() {
                 </Select>
             </Preference>
 
-            <Button mt={4} onPress={() => navigation.navigate('Credits')}>
-                <Text>Credits</Text>
-            </Button>
+            <Pressable onPress={() => navigation.navigate('Credits')}>
+                <Preference>    
+                    <Text fontSize={'xl'} color="blueGray.100">Credits</Text>
+                </Preference>
+            </Pressable>
         </VStack>
     )
 
@@ -69,7 +72,7 @@ export default function SettingsScreen() {
 function Preference({ children }: {children: any}) {
     return (
         <VStack>
-            <HStack p={3} justifyContent="space-between" alignItems="center">
+            <HStack p={3} pl={4} pr={4} justifyContent="space-between" alignItems="center">
                 { children }
             </HStack>
             <Divider />
