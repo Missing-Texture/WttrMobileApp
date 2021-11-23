@@ -1,6 +1,6 @@
 import * as Location from 'expo-location';
 import { useContext } from 'react';
-import { IPreferences } from '../Interfaces';
+import { IData, IError, IPreferences } from '../Interfaces';
 import { PreferenceContext } from '../PreferenceContext';
 import { PreferenceValues } from '../PreferenceManager';
 
@@ -54,11 +54,17 @@ var fetchCity = (latitude: Number, longitude: Number) => new Promise<String>((re
 })
 
 
-export function fetchWeatherData(city: String, setData: any, setIsLoading: any, preferences: IPreferences) {
+export function fetchWeatherData(city: String, setData: (data: IData) => void, setIsLoading: (isLoading: boolean) => void, setError: (error: IError | null) => void,  preferences: IPreferences) {
 	setIsLoading(true)
 
 	fetch('http://wttr.in/'+ city +'?format=j1')
 	.then(response => {
+		if (response.status != 200) {
+			setError({
+				title: "We can't find that City",
+				description: "Try searching another City manually",
+			})
+		}
 		return response.json()
 	})
 	.then(json => {

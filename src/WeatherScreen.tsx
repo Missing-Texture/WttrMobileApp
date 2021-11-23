@@ -12,11 +12,12 @@ import AstronomyFooter from './WeatherScreen/AstronomyFooter';
 import LoadingIndicator from './WeatherScreen/LoadingIndicator';
 import { PreferenceContext } from './PreferenceContext';
 import { getPreferences, PreferenceValues } from './PreferenceManager';
+import { useToast } from 'native-base';
 
 
 export default function WeatherScreen() {
 
-	const { setData, isLoading, setIsLoading } = useContext(WeatherDataContext)
+	const { setData, isLoading, setIsLoading, error, setError } = useContext(WeatherDataContext)
 	const { preferences, setPreferences } = useContext(PreferenceContext)
 
 	const scrollOffsetAnimatedValue = React.useRef(new Animated.Value(0)).current;
@@ -54,12 +55,28 @@ export default function WeatherScreen() {
 
 					fetchLocation()
 					.then((city: String) => {
-						fetchWeatherData(city, setData, setIsLoading, prefs)
+						fetchWeatherData(city, setData, setIsLoading, setError, prefs)
 					})
 				})
 			}
 		}
 	}
+
+	const toast = useToast()
+	
+	// Error Handler
+	useEffect(() => {
+		if (error != null) {
+			console.log("there was an error");
+			
+			toast.show({
+				status: "error", 
+				title: error.title,
+				description: error.description
+			})
+			setError(null)
+		}
+	}, [error])
 
 
 	return (

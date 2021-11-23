@@ -12,7 +12,7 @@ import { PreferenceValues } from '../PreferenceManager'
 
 
 export default function InfoHeader() {
-    const { data, setData, setIsLoading } = useContext(WeatherDataContext)
+    const { data, setData, setIsLoading, setError } = useContext(WeatherDataContext)
     const { preferences } = useContext(PreferenceContext)
 
     const cityTextInput = useRef(null)
@@ -83,7 +83,7 @@ export default function InfoHeader() {
                                 <Input 
                                     ref={cityTextInput} 
                                     onChangeText={setCity} 
-                                    onEndEditing={() => { fetchWeatherData(city, setData, setIsLoading, preferences) }}
+                                    onEndEditing={() => { fetchWeatherData(city, setData, setIsLoading, setError, preferences) }}
                                     _focus={{
                                         borderColor: "info.500"
                                     }}
@@ -104,7 +104,7 @@ export default function InfoHeader() {
                                 <Button
                                     colorScheme="info"
                                     onPress={() => {
-                                        fetchWeatherData(city, setData, setIsLoading, preferences)
+                                        fetchWeatherData(city, setData, setIsLoading, setError, preferences)
                                         setModalVisible(false)
                                     }}
                                 >

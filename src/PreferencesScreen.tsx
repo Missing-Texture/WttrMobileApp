@@ -13,7 +13,7 @@ export default function PreferencesScreen() {
     const navigation = useNavigation<any>()
     const { preferences, setPreferences } = useContext(PreferenceContext)
 
-    const { setData, setIsLoading } = useContext(WeatherDataContext)
+    const { setData, setIsLoading, setError } = useContext(WeatherDataContext)
 
     return(
         <VStack>
@@ -64,7 +64,7 @@ export default function PreferencesScreen() {
     function refetchWeatherData() {
         fetchLocation()
         .then((city: String) => {
-            fetchWeatherData(city, setData, setIsLoading, preferences)
+            fetchWeatherData(city, setData, setIsLoading, setError, preferences)
         })
     }
 }

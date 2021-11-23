@@ -21,3 +21,8 @@ export interface IPreferences {
 	MeasuringSystem: string
     TemperatureScale: string
 }
+
+export interface IError {
+	title: string
+	description: string
+}
