@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet } from 'react-native';
-import { AreaChart, XAxis, YAxis } from 'react-native-svg-charts'
 import * as shape from 'd3-shape'
 import Svg, { Line } from 'react-native-svg'
 
@@ -8,6 +7,7 @@ import { Grid, DayTimeAxis, Cursor } from './UiComponents'
 import { IDayWeatherInfo } from '../Interfaces'
 import globalStyles from '../globalStyles'
 import LineChart from '../SvgCharts/line-chart';
+import AreaChart from '../SvgCharts/area-chart';
 
 
 export default function WeatherData(
@@ -92,7 +92,8 @@ export default function WeatherData(
                         data={data.rain}
                         yMax={100}
                         curve={shape.curveMonotoneX}
-                        svg={{ fill: 'rgb(48, 59, 184)' }}
+                        svg={{ fill: 'url(#grad)' }}
+                        gradColors={[{0:"#1924A0"},{1:"#303BB8"}]}
                     ></AreaChart>
                 </View>
                 {/* thin 0% indication line for better visual clarity */}

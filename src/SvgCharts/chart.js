@@ -95,16 +95,6 @@ class Chart extends PureComponent {
             ...paths,
         }
 
-        var test = (<><Stop offset="0" stopColor="#E92020" stopOpacity="1" />
-        <Stop offset="0.2" stopColor="#E7872D" stopOpacity="1" />
-        <Stop offset="0.4" stopColor="#E1C627" stopOpacity="1" />
-        <Stop offset="0.5" stopColor="#3ADE4E" stopOpacity="1" />
-        <Stop offset="0.6" stopColor="#3CCCD3" stopOpacity="1" />
-        <Stop offset="0.8" stopColor="#2A26CF" stopOpacity="1" />
-        <Stop offset="1" stopColor="#8E1DCE" stopOpacity="1" /></>)
-
-        var cols = [{0:"#E7872D"},{1:"#8E1DCE"}]
-
         return (
             <View style={style}>
                 <View style={{ flex: 1 }} onLayout={(event) => this._onLayout(event)}>
