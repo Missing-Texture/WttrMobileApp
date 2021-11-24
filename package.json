@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
+    "@types/jest": "^27.0.3",
     "@types/react": "~17.0.19",
     "@types/react-native": "^0.64.15",
     "@types/react-native-svg-charts": "^5.0.9",
