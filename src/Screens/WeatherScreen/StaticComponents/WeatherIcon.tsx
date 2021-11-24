@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 
-import { Sunny, PartlyCloudy, Cloudy, VeryCloudy, LightShowers, LightRain, HeavyRain, Snow, Sleet, PartlyCloudyNight, SunnyNight } from '../../assets/WeatherIcons'
+import { Sunny, PartlyCloudy, Cloudy, VeryCloudy, LightShowers, LightRain, HeavyRain, Snow, Sleet, PartlyCloudyNight, SunnyNight } from '../../../../assets/WeatherIcons'
 
 const iconSize = 60
 

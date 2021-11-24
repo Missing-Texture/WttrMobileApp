@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { StyleSheet, Text, View, Animated, AppState } from 'react-native';
 
-import globalStyles from './globalStyles'
-import { IData, IPreferences } from './Interfaces'
-import { WeatherDataContext } from './WeatherDataContext'
-import { fetchLocation, fetchWeatherData } from './WeatherScreen/FetchData'
-import InfoHeader from './WeatherScreen/InfoHeader'
-import Pagination from './WeatherScreen/Pagination';
-import WeatherSwiper from './WeatherScreen/WeatherSwiper';
-import AstronomyFooter from './WeatherScreen/AstronomyFooter';
-import LoadingIndicator from './WeatherScreen/LoadingIndicator';
-import { PreferenceContext } from './PreferenceContext';
-import { getPreferences, PreferenceValues } from './PreferenceManager';
+import globalStyles from '../../globalStyles'
+import { IData, IPreferences } from '../../Interfaces'
+import { WeatherDataContext } from '../../Contexts/WeatherDataContext'
+import { fetchLocation, fetchWeatherData } from '../../FetchData'
+import InfoHeader from './StatefulComponents/InfoHeader'
+import Pagination from './StatefulComponents/Pagination';
+import WeatherSwiper from './StatefulComponents/WeatherSwiper';
+import AstronomyFooter from './StatefulComponents/AstronomyFooter';
+import LoadingIndicator from './StaticComponents/LoadingIndicator';
+import { PreferenceContext } from '../../Contexts/PreferenceContext';
+import { getPreferences, PreferenceValues } from '../../PreferenceManager';
 import { useToast } from 'native-base';
 
 

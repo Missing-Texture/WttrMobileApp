@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import { Button, Divider, HStack, Select, Text, VStack } from 'native-base';
 import { useNavigation } from '@react-navigation/core'
 
-import { storePreferences, getPreferences, PreferenceValues } from './PreferenceManager';
-import { PreferenceContext } from './PreferenceContext';
-import { WeatherDataContext } from './WeatherDataContext';
-import { fetchLocation, fetchWeatherData } from './WeatherScreen/FetchData';
+import { storePreferences, getPreferences, PreferenceValues } from '../PreferenceManager';
+import { PreferenceContext } from '../Contexts/PreferenceContext';
+import { WeatherDataContext } from '../Contexts/WeatherDataContext';
+import { fetchLocation, fetchWeatherData } from '../FetchData';
 import { Pressable } from 'react-native';
 
 

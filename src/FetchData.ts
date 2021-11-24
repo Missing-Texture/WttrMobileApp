@@ -1,8 +1,8 @@
 import * as Location from 'expo-location';
 import { useContext } from 'react';
-import { IData, IError, IPreferences } from '../Interfaces';
-import { PreferenceContext } from '../PreferenceContext';
-import { PreferenceValues } from '../PreferenceManager';
+import { IData, IError, IPreferences } from './Interfaces';
+import { PreferenceContext } from './Contexts/PreferenceContext';
+import { PreferenceValues } from './PreferenceManager';
 
 
 export var fetchLocation = () => new Promise<String>((resolve, reject) => {

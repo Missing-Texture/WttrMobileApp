@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 import { Box, Text, HStack, VStack, Center, View } from 'native-base'
 import moment from 'moment'
 
-import { IData } from '../Interfaces'
+import { IData } from '../../../Interfaces'
 import { Pressable } from 'react-native'
-import { Menu } from '../../assets/MaterialIcons'
+import { Menu } from '../../../../assets/MaterialIcons'
 import { useNavigation } from '@react-navigation/core'
-import { WeatherDataContext } from '../WeatherDataContext'
+import { WeatherDataContext } from '../../../Contexts/WeatherDataContext'
 
 
 export default function AstronomyFooter() {

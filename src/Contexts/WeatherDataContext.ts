@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { IData, IError } from "./Interfaces";
+import { IData, IError } from "../Interfaces";
 
 interface IWeatherDataContext {
     data: IData, 

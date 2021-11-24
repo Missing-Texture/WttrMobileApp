@@ -1,10 +1,12 @@
 import React, { useContext } from 'react'
 import { View, Text, StyleSheet } from 'react-native';
-import { Grid, DayTimeAxis, Cursor } from './UiComponents'
-import { IDayWeatherInfo } from '../Interfaces'
-import globalStyles from '../globalStyles'
-import { PreferenceContext } from '../PreferenceContext';
-import { PreferenceValues } from '../PreferenceManager';
+
+import { IDayWeatherInfo } from '../../../Interfaces'
+import globalStyles from '../../../globalStyles'
+import { PreferenceContext } from '../../../Contexts/PreferenceContext';
+import { PreferenceValues } from '../../../PreferenceManager';
+import Grid from './Grid';
+import Cursor from './Cursor';
 
 
 export default function WeatherDataBackground(

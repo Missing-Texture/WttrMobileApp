@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { IPreferences } from "./Interfaces"
+import { IPreferences } from "../Interfaces"
 
 interface IPreferenceContext {
     preferences: IPreferences, 

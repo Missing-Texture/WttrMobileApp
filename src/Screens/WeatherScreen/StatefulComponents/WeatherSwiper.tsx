@@ -3,10 +3,10 @@ import { StyleSheet, View, Animated } from 'react-native';
 import PagerView from 'react-native-pager-view';
 
 import WeatherData from './WeatherData'
-import WeatherDataBackground from './WeatherDataBackground'
-import globalStyles from '../globalStyles'
-import { IData } from '../Interfaces'
-import { WeatherDataContext } from '../WeatherDataContext';
+import WeatherDataBackground from '../StaticComponents/WeatherDataBackground'
+import globalStyles from '../../../globalStyles'
+import { IData } from '../../../Interfaces'
+import { WeatherDataContext } from '../../../Contexts/WeatherDataContext';
 
 
 const AnimatedPagerView = Animated.createAnimatedComponent(PagerView);

@@ -3,12 +3,12 @@ import { NativeBaseProvider, extendTheme } from 'native-base';
 import { DarkTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import WeatherScreen from './src/WeatherScreen';
-import PreferencesScreen from './src/PreferencesScreen';
-import CreditScreen from './src/CreditScreen';
-import { PreferenceContext } from './src/PreferenceContext';
+import WeatherScreen from './src/Screens/WeatherScreen/WeatherScreen';
+import PreferencesScreen from './src/Screens/PreferencesScreen';
+import CreditScreen from './src/Screens/CreditScreen';
+import { PreferenceContext } from './src/Contexts/PreferenceContext';
 import { IData, IError, IPreferences } from './src/Interfaces';
-import { WeatherDataContext } from './src/WeatherDataContext';
+import { WeatherDataContext } from './src/Contexts/WeatherDataContext';
 
 
 const config = {

@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import { StyleSheet, Text, View, ActivityIndicator, Animated } from 'react-native';
 import moment from 'moment'
 
-import globalStyles from '../globalStyles'
-import { WeatherDataContext } from '../WeatherDataContext';
+import globalStyles from '../../../globalStyles'
+import { WeatherDataContext } from '../../../Contexts/WeatherDataContext';
 
 
 export default function Pagination(

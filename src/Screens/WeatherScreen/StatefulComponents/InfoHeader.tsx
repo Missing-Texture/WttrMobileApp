@@ -3,12 +3,12 @@ import { Box, Text, Pressable, HStack, Modal, FormControl, Input, Button, Center
 import Svg, { Line } from 'react-native-svg'
 import moment from 'moment'
 
-import { fetchWeatherData } from './FetchData'
-import WeatherIcon from './WeatherIcon';
-import { Search } from '../../assets/MaterialIcons'
-import { WeatherDataContext } from '../WeatherDataContext'
-import { PreferenceContext } from '../PreferenceContext'
-import { PreferenceValues } from '../PreferenceManager'
+import { fetchWeatherData } from '../../../FetchData'
+import WeatherIcon from '../StaticComponents/WeatherIcon';
+import { Search } from '../../../../assets/MaterialIcons'
+import { WeatherDataContext } from '../../../Contexts/WeatherDataContext'
+import { PreferenceContext } from '../../../Contexts/PreferenceContext'
+import { PreferenceValues } from '../../../PreferenceManager'
 
 
 export default function InfoHeader() {
