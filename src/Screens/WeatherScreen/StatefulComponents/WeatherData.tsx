@@ -7,6 +7,7 @@ import { IDayWeatherInfo } from '../../../Interfaces'
 import globalStyles from '../../../globalStyles'
 import LineChart from '../../../SvgCharts/line-chart';
 import AreaChart from '../../../SvgCharts/area-chart';
+import { opacity } from 'styled-system';
 
 
 export default function WeatherData(
@@ -91,15 +92,26 @@ export default function WeatherData(
                         data={data.rain}
                         yMax={100}
                         curve={shape.curveMonotoneX}
-                        svg={{ fill: 'url(#grad)' }}
+                        svg={{ fill: 'url(#grad)', opacity: '0.8' }}
                         gradColors={[{0:"#1924A0"},{1:"#303BB8"}]}
                     ></AreaChart>
                 </View>
-                {/* thin 0% indication line for better visual clarity */}
+                {/* thin indication line at 0% for better visual clarity */}
                 <View style={[ globalStyles.C_overlappingContainer, { alignItems: 'center', justifyContent: 'center' } ]}>
                     <Svg style={{ width: '90%', height: '100%' }}>
-                        <Line x1={'0%'} x2={'100%'} y1={'85%'} y2={'85%'} stroke={'rgb(48, 59, 184)'} strokeWidth={1} />
+                        <Line x1={'0%'} x2={'100%'} y1={'85%'} y2={'85%'} stroke={'rgb(48, 59, 184)'} strokeWidth={1} opacity={'0.8'} />
                     </Svg> 
+                </View>
+
+                <View style={[ globalStyles.C_overlappingContainer , { alignItems: 'center', justifyContent: 'center' } ]}>
+                    <AreaChart
+                        style={{ width: '90%', height: '70%' }}
+                        data={data.snow}
+                        yMax={100}
+                        curve={shape.curveMonotoneX}
+                        svg={{ fill: 'url(#grad)', opacity: '0.6' }}
+                        gradColors={[{0:"#D5D7ED"},{1:"#FFFFFF"}]}
+                    ></AreaChart>
                 </View>
             </View>
 

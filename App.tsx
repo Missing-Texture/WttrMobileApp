@@ -22,7 +22,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
 
 	const [isLoading, setIsLoading] = useState(true)
-	const [data, setData] = useState<IData>({city: "", dayInfos: [{date: "", temps: [0,0], rain: [0,0]}], currentTemp: 0, currentWeatherCode: 0, maxTemp: 0, minTemp: 0, sunrise: "", sunset: "", humidity: 0, windspeed: 0})
+	const [data, setData] = useState<IData>({city: "", dayInfos: [{date: "", temps: [0,0], rain: [0,0], snow: [0,0]}], currentTemp: 0, currentWeatherCode: 0, maxTemp: 0, minTemp: 0, sunrise: "", sunset: "", humidity: 0, windspeed: 0})
 	const [error, setError] = useState<IError | null>(null)
 
 	const [preferences, setPreferences] = useState<IPreferences>({

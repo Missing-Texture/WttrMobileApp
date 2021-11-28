@@ -15,6 +15,7 @@ export interface IDayWeatherInfo {
 	date: string
 	temps: number[]
 	rain: number[]
+	snow: number[]
 }
 
 export interface IPreferences {

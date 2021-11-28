@@ -105,10 +105,11 @@ export function fetchWeatherData(city: String, setData: (data: IData) => void, s
 
 		let temps = []
 		let rains = []
+		let snows = []
 		for (let i = 0; i < 3; i++) {
 			temps[i] = json.weather[i].hourly.map((datapoint: any) => { return Number(datapoint[selected_temp]) })
 			rains[i] = json.weather[i].hourly.map((datapoint: any) => { return Number(datapoint.chanceofrain) })
-		}
+			snows[i] = json.weather[i].hourly.map((datapoint: any) => { return Number(datapoint.chanceofsnow) })		}
 
 		let combinedTempRange = [...temps[0], ...temps[1], ...temps[2]]
 
@@ -119,16 +120,19 @@ export function fetchWeatherData(city: String, setData: (data: IData) => void, s
 					date: json.weather[0].date,
 					temps: temps[0],
 					rain: rains[0],
+					snow: snows[0],
 				},
 				{
 					date: json.weather[1].date,
 					temps: temps[1],
 					rain: rains[1],
+					snow: snows[1],
 				},
 				{
 					date: json.weather[2].date,
 					temps: temps[2],
 					rain: rains[2],
+					snow: snows[2],
 				}],
 			'currentTemp': Number(json.current_condition[0][selected_current_temp]),
 			'currentWeatherCode': Number(json.current_condition[0].weatherCode),
