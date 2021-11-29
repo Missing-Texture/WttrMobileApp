@@ -44,13 +44,14 @@ export default function WeatherScreen() {
 				getPreferences()
 				.then((prefs: IPreferences) => {
 					// if values don't exist in async storage use default values
-					if (prefs === undefined && prefs === null) {
+					if (prefs === undefined || prefs === null) {
 						prefs = {
 							MeasuringSystem: PreferenceValues.MeasuringSystem.metric,
 							TemperatureScale: PreferenceValues.TemperatureScale.actual
 						}
 					}
 
+					// save preferences from async storage to state for app to use
 					setPreferences(prefs)
 
 					fetchLocation()
